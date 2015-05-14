@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Gistvote
+        psr4_prefix: Gistvote
+        src_path: app
