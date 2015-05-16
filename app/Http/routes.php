@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+get('login', 'AuthController@login');
+get('logout', 'AuthController@logout');
