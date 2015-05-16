@@ -138,6 +138,11 @@ return [
         'Illuminate\View\ViewServiceProvider',
 
         /*
+         * Other Service Providers
+         */
+        'Laravel\Socialite\SocialiteServiceProvider',
+
+        /*
          * Application Service Providers...
          */
         'Gistvote\Providers\AppServiceProvider',
@@ -191,6 +196,8 @@ return [
         'URL'       => 'Illuminate\Support\Facades\URL',
         'Validator' => 'Illuminate\Support\Facades\Validator',
         'View'      => 'Illuminate\Support\Facades\View',
+
+        'Socialize' => 'Laravel\Socialite\Facades\Socialite',
 
     ],
 
