@@ -23,6 +23,7 @@ class UserRepository
         $user->email = $email;
         $user->name = $userData->name;
         $user->avatar = $userData->avatar;
+        $user->token = $userData->token;
         $user->save();
 
         return $user;
