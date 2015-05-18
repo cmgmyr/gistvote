@@ -17,3 +17,6 @@ Route::get('/', function () {
 
 get('login', 'AuthController@login');
 get('logout', 'AuthController@logout');
+
+get('gists', 'GistsController@index');
+get('gists/refresh', 'GistsController@refresh');
