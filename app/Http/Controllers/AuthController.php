@@ -5,7 +5,6 @@ use Gistvote\Auth\AuthenticateUserListener;
 use Gistvote\Auth\UnAuthenticateUser;
 use Gistvote\Auth\UnAuthenticateUserListener;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 
 class AuthController extends Controller implements AuthenticateUserListener, UnAuthenticateUserListener
 {
