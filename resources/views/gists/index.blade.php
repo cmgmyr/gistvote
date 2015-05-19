@@ -1,6 +1,7 @@
 <html>
 <head>
     <title>Your Gists</title>
+    <link rel="stylesheet" href="{{ elixir("css/app.css") }}">
 </head>
 <body>
 <div class="container">
@@ -15,5 +16,7 @@
         <a href="/gists/refresh">Refresh</a>
     </div>
 </div>
+
+    <script src="{{ elixir("js/app.js") }}"></script>
 </body>
 </html>
