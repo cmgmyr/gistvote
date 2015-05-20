@@ -146,6 +146,7 @@ return [
          * Application Service Providers...
          */
         'Gistvote\Providers\AppServiceProvider',
+        'Gistvote\Providers\ComposerServiceProvider',
         'Gistvote\Providers\EventServiceProvider',
         'Gistvote\Providers\RouteServiceProvider',
 

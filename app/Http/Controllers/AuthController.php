@@ -54,7 +54,7 @@ class AuthController extends Controller implements AuthenticateUserListener, UnA
     /**
      * When a user has been successfully logged out
      *
-     * @return \Illuminate\Routing\Redirector
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function userHasLoggedOut()
     {

@@ -7,6 +7,11 @@ use Illuminate\Contracts\Auth\Guard as Auth;
 class GistsController extends Controller
 {
     /**
+     * @var Auth
+     */
+    private $auth;
+
+    /**
      * @var GistRepository
      */
     private $repository;
@@ -14,12 +19,14 @@ class GistsController extends Controller
     /**
      * Enable auth middleware, redirect if not logged in.
      *
+     * @param Auth $auth
      * @param GistRepository $repository
      */
-    public function __construct(GistRepository $repository)
+    public function __construct(Auth $auth, GistRepository $repository)
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'index']);
 
+        $this->auth = $auth;
         $this->repository = $repository;
     }
 
@@ -30,7 +37,11 @@ class GistsController extends Controller
      */
     public function index()
     {
-        $gists = $this->repository->all();
+        if (!$this->auth->check()) {
+            return view('welcome');
+        }
+
+        $gists = $this->repository->all($this->auth->user());
 
         return view('gists.index')->with('gists', $gists);
     }
@@ -38,12 +49,11 @@ class GistsController extends Controller
     /**
      * Refreshes the user's gists in the database
      *
-     * @param Auth $auth
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function refresh(Auth $auth)
+    public function refresh()
     {
-        $user = $auth->user();
+        $user = $this->auth->user();
         $gh = new GitHub($user);
 
         $gists = $gh->gists();
@@ -52,6 +62,6 @@ class GistsController extends Controller
             $this->repository->findByIdOrCreate($gist, $user);
         }
 
-        return redirect('gists');
+        return redirect('/');
     }
 }

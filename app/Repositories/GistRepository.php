@@ -6,9 +6,15 @@ use Gistvote\User;
 
 class GistRepository
 {
-    public function all()
+    /**
+     * Gets all gists created by the user
+     *
+     * @param User $user
+     * @return mixed
+     */
+    public function all(User $user)
     {
-        return Gist::latest()->get();
+        return Gist::where('user_id', $user->id)->latest()->get();
     }
 
     /**

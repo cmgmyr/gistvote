@@ -1,48 +1,6 @@
-<html>
-    <head>
-        <title>GistVote - Turn Your Gists Into a Voting Platform</title>
+@extends('layouts.app')
 
-        <link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
-
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                height: 100%;
-                color: #B0BEC5;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-                margin-bottom: 40px;
-            }
-
-            .quote {
-                font-size: 24px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">GistVote</div>
-                <div class="quote">Your gists turned into a voting platform. (coming soon)</div>
-            </div>
-        </div>
-    </body>
-</html>
+@section('content')
+    <h1>Welcome to GistVote!</h1>
+    <p>Your gists turned into a voting platform. (coming soon)</p>
+@stop
