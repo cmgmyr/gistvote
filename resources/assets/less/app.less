@@ -5,6 +5,9 @@
 @import "../../../vendor/bower_components/fontawesome/less/font-awesome.less";
 @fa-font-path: "../../fonts";
 
+// Prism
+@import (inline) "../../../resources/assets/css/prism.css";
+
 /* General Layout */
 html {
     position: relative;
@@ -49,5 +52,11 @@ h1 {
             top: -10;
             margin-left: 20px;
         }
+    }
+}
+
+#gist_list {
+    .fa-lock {
+        color: #A1882B;
     }
 }
