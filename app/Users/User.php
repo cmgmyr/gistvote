@@ -1,4 +1,4 @@
-<?php namespace Gistvote;
+<?php namespace Gistvote\Users;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;

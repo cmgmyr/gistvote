@@ -1,6 +1,4 @@
-<?php namespace Gistvote\Repositories;
-
-use Gistvote\User;
+<?php namespace Gistvote\Users;
 
 class UserRepository
 {

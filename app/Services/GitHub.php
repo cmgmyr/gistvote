@@ -1,6 +1,6 @@
 <?php namespace Gistvote\Services;
 
-use Gistvote\User;
+use Gistvote\Users\User;
 use Github\Client as GitHubClient;
 
 class GitHub
@@ -47,5 +47,16 @@ class GitHub
     public function gists()
     {
         return $this->client->api('gists')->all();
+    }
+
+    /**
+     * Returns a specific gist
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function gist($id)
+    {
+        return $this->client->api('gists')->show($id);
     }
 }

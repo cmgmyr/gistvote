@@ -1,6 +1,6 @@
 <?php namespace Gistvote\Auth;
 
-use Gistvote\Repositories\UserRepository;
+use Gistvote\Users\UserRepository;
 use Illuminate\Contracts\Auth\Guard as Auth;
 use Laravel\Socialite\Contracts\Factory as Socialite;
 

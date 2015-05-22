@@ -1,4 +1,4 @@
-<?php namespace Gistvote;
+<?php namespace Gistvote\Gists;
 
 use Illuminate\Database\Eloquent\Model;
 

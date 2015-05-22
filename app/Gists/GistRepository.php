@@ -1,8 +1,7 @@
-<?php namespace Gistvote\Repositories;
+<?php namespace Gistvote\Gists;
 
 use Carbon\Carbon;
-use Gistvote\Gist;
-use Gistvote\User;
+use Gistvote\Users\User;
 
 class GistRepository
 {

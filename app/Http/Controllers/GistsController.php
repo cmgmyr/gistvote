@@ -1,6 +1,6 @@
 <?php namespace Gistvote\Http\Controllers;
 
-use Gistvote\Repositories\GistRepository;
+use Gistvote\Gists\GistRepository;
 use Gistvote\Services\GitHub;
 use Illuminate\Contracts\Auth\Guard as Auth;
 
