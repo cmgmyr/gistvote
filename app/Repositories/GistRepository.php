@@ -28,7 +28,11 @@ class GistRepository
             'user_id' => $user->id
         ]);
 
+        // @todo: fix this file stuff, it's bad
         $gist->file = array_keys($gistData['files'])[0];
+        $gist->file_language = $gistData['files'][$gist->file]['language'];
+        $gist->file_content = file_get_contents($gistData['files'][$gist->file]['raw_url']);
+
         $gist->description = $gistData['description'];
         $gist->public = $gistData['public'];
         $gist->files = count($gistData['files']);

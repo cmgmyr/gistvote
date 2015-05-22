@@ -30,7 +30,18 @@ class Gist extends Model
      *
      * @var array
      */
-    protected $fillable = ['id', 'user_id', 'description', 'public', 'created_at', 'updated_at', 'last_scan'];
+    protected $fillable = [
+        'id',
+        'user_id',
+        'file',
+        'file_language',
+        'file_content',
+        'description',
+        'public',
+        'created_at',
+        'updated_at',
+        'last_scan'
+    ];
 
     /**
      * The attributes that should be mutated to dates.
@@ -38,4 +49,27 @@ class Gist extends Model
      * @var array
      */
     protected $dates = ['created_at', 'updated_at', 'last_scan'];
+
+    public function getFileContentSnippetAttribute()
+    {
+        $content = $this->attributes['file_content'];
+
+        // split content by lines
+        $contents = explode(PHP_EOL, $content);
+
+        $newContents = array_slice($contents, 0, 10);
+
+        return implode(PHP_EOL, $newContents);
+    }
+
+    public function getFileLanguageHighlightAttribute()
+    {
+        $language = strtolower($this->attributes['file_language']);
+
+        if ($language == '' || !in_array($language, \Config::get('prismjs'))) {
+            $language = 'bash';
+        }
+
+        return $language;
+    }
 }

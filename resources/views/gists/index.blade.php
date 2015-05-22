@@ -4,9 +4,9 @@
     <h1>Your Gists <a href="{{ route('gists.refresh') }}" class="refresh" title="Refresh Gists"><i class="fa fa-refresh"></i></a></h1>
 
     @if(count($gists))
-        <ul>
+        <ul id="gist_list" class="list-group">
         @foreach($gists as $gist)
-            <li>{{ $gist->file }} @if(!$gist->public)<i class="fa fa-lock"></i>@endif</li>
+            @include('gists/partials/list-gist', $gist)
         @endforeach
         </ul>
     @endif
