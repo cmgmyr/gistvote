@@ -41,7 +41,7 @@ class GistsController extends Controller
             return view('welcome');
         }
 
-        $gists = $this->repository->all($this->auth->user());
+        $gists = $this->repository->all($this->auth->id());
 
         return view('gists.index')->with('gists', $gists);
     }
@@ -59,7 +59,7 @@ class GistsController extends Controller
         $gists = $gh->gists();
 
         foreach ($gists as $gist) {
-            $this->repository->findByIdOrCreate($gist, $user);
+            $this->repository->findByIdOrCreate($gist, $user->id);
         }
 
         return redirect('/');

@@ -1,30 +1,30 @@
 <?php namespace Gistvote\Gists;
 
 use Carbon\Carbon;
-use Gistvote\Users\User;
 
 class GistRepository
 {
     /**
      * Gets all gists created by the user
      *
-     * @param User $user
+     * @param int $userId
      * @return mixed
      */
-    public function all(User $user)
+    public function all($userId)
     {
-        return Gist::where('user_id', $user->id)->latest()->get();
+        return Gist::where('user_id', $userId)->latest()->get();
     }
 
     /**
-     * @param $gistData
+     * @param array $gistData
+     * @param int $userId
      * @return static
      */
-    public function findByIdOrCreate($gistData, User $user)
+    public function findByIdOrCreate($gistData, $userId)
     {
         $gist = Gist::firstOrCreate([
             'id' => $gistData['id'],
-            'user_id' => $user->id
+            'user_id' => $userId
         ]);
 
         // @todo: fix this file stuff, it's bad
