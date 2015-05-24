@@ -8,21 +8,27 @@ class GistRepository
      * Gets all gists created by the user
      *
      * @param int $userId
-     * @return mixed
+     * @return Collection
      */
     public function all($userId)
     {
-        return Gist::where('user_id', $userId)->latest()->get();
+        $gists = EloquentGist::where('user_id', $userId)->latest()->get();
+
+        $gistCollection = collect($gists)->map(function ($gist) {
+            return Gist::fromEloquent($gist);
+        });
+
+        return $gistCollection;
     }
 
     /**
      * @param array $gistData
      * @param int $userId
-     * @return static
+     * @return Gist
      */
     public function findByIdOrCreate($gistData, $userId)
     {
-        $gist = Gist::firstOrCreate([
+        $gist = EloquentGist::firstOrCreate([
             'id' => $gistData['id'],
             'user_id' => $userId
         ]);
@@ -42,6 +48,6 @@ class GistRepository
 
         $gist->save();
 
-        return $gist;
+        return Gist::fromEloquent($gist);
     }
 }

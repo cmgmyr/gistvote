@@ -1,75 +1,76 @@
 <?php namespace Gistvote\Gists;
 
-use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
-class Gist extends Model
+class Gist
 {
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'gists';
+    public $id;
+    public $description;
 
     /**
-     * Indicates if the IDs are auto-incrementing.
-     *
-     * @var bool
+     * @var Collection
      */
-    public $incrementing = false;
+    public $comments;
+    public $commentCount;
 
     /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
+     * @var Collection
      */
-    public $timestamps = false;
+    public $files;
+    public $fileCount;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * @var Carbon
      */
-    protected $fillable = [
-        'id',
-        'user_id',
-        'file',
-        'file_language',
-        'file_content',
-        'description',
-        'public',
-        'created_at',
-        'updated_at',
-        'last_scan'
-    ];
+    public $created_at;
 
     /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
+     * @var Carbon
      */
-    protected $dates = ['created_at', 'updated_at', 'last_scan'];
+    public $updated_at;
 
-    public function getFileContentSnippetAttribute()
+    /**
+     * @var Carbon
+     */
+    public $last_scan;
+
+    private $public;
+
+    public static function fromEloquent($eloquentGist)
     {
-        $content = $this->attributes['file_content'];
+        $gist = new self;
 
-        // split content by lines
-        $contents = explode(PHP_EOL, $content);
+        $gist->id = $eloquentGist->id;
+        $gist->description = $eloquentGist->description;
+        $gist->public = $eloquentGist->public;
 
-        $newContents = array_slice($contents, 0, 10);
+        $gist->comments = collect(); // we don't store comments in the db right now
+        $gist->commentCount = $eloquentGist->comments;
 
-        return implode(PHP_EOL, $newContents);
+        $gist->files = collect([
+            new GistFile($eloquentGist->file, $eloquentGist->file_language, $eloquentGist->file_content)
+        ]);
+        $gist->fileCount = $eloquentGist->files;
+
+        $gist->created_at = $eloquentGist->created_at;
+        $gist->updated_at = $eloquentGist->updated_at;
+        $gist->last_scan = $eloquentGist->last_scan;
+
+        return $gist;
     }
 
-    public function getFileLanguageHighlightAttribute()
+    public function firstFile()
     {
-        $language = strtolower($this->attributes['file_language']);
+        return $this->files->first();
+    }
 
-        if ($language == '' || !in_array($language, \Config::get('prismjs'))) {
-            $language = 'bash';
-        }
+    public function isPublic()
+    {
+        return $this->public;
+    }
 
-        return $language;
+    public function isSecret()
+    {
+        return !$this->isPublic();
     }
 }
