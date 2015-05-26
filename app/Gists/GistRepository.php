@@ -22,6 +22,8 @@ class GistRepository
     }
 
     /**
+     * Find or create a gist in the database
+     *
      * @param array $gistData
      * @param int $userId
      * @return Gist
@@ -29,7 +31,7 @@ class GistRepository
     public function findByIdOrCreate($gistData, $userId)
     {
         $gist = EloquentGist::firstOrCreate([
-            'id' => $gistData['id'],
+            'id'      => $gistData['id'],
             'user_id' => $userId
         ]);
 

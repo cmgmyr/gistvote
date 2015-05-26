@@ -4,19 +4,34 @@ use Carbon\Carbon;
 
 class Gist
 {
+    /**
+     * @var int
+     */
     public $id;
-    public $description;
+
+    /**
+     * @var string
+     */
+    public $description = '';
 
     /**
      * @var Collection
      */
     public $comments;
+
+    /**
+     * @var int
+     */
     public $commentCount;
 
     /**
      * @var Collection
      */
     public $files;
+
+    /**
+     * @var int
+     */
     public $fileCount;
 
     /**
@@ -34,9 +49,18 @@ class Gist
      */
     public $last_scan;
 
+    /**
+     * @var bool
+     */
     private $public;
 
-    public static function fromEloquent($eloquentGist)
+    /**
+     * Creates a new Gist object from Eloquent
+     *
+     * @param EloquentGist $eloquentGist
+     * @return Gist
+     */
+    public static function fromEloquent(EloquentGist $eloquentGist)
     {
         $gist = new self;
 
@@ -59,16 +83,31 @@ class Gist
         return $gist;
     }
 
+    /**
+     * Returns the first file of the Gist
+     *
+     * @return GistFile
+     */
     public function firstFile()
     {
         return $this->files->first();
     }
 
+    /**
+     * Sees if the Gist is public
+     *
+     * @return bool
+     */
     public function isPublic()
     {
         return $this->public;
     }
 
+    /**
+     * Sees if the Gist is not public
+     *
+     * @return bool
+     */
     public function isSecret()
     {
         return !$this->isPublic();
