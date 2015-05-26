@@ -38,6 +38,9 @@ class EloquentGist extends Model
         'file_content',
         'description',
         'public',
+        'files',
+        'comments',
+        'enable_voting',
         'created_at',
         'updated_at',
         'last_scan'

@@ -11,6 +11,7 @@
                     <ul class="list-inline">
                         <li><i class="fa fa-code"></i> {{ $gist->fileCount }} Files</li>
                         <li><i class="fa fa-comments"></i> {{ $gist->commentCount }} comment(s)</li>
+                        <li><input type="checkbox" class="enable_voting" @if($gist->isVoting()) checked @endif data-id="{{ $gist->id }}" data-toggle="toggle"></li>
                     </ul>
                 </div>
             </div>

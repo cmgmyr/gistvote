@@ -64,4 +64,17 @@ class GistsController extends Controller
 
         return redirect('/');
     }
+
+    /**
+     * Activates a Gist for voting
+     *
+     * @param $id
+     * @return array
+     */
+    public function activateGist($id)
+    {
+        $this->repository->activate($id);
+
+        return ['status' => 'OK'];
+    }
 }

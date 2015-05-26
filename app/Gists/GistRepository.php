@@ -52,4 +52,16 @@ class GistRepository
 
         return Gist::fromEloquent($gist);
     }
+
+    /**
+     * Activates a Gist for voting via Eloquent
+     *
+     * @param $id
+     */
+    public function activate($id)
+    {
+        $gist = EloquentGist::find($id);
+        $gist->enable_voting = true;
+        $gist->save();
+    }
 }

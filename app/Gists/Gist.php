@@ -55,6 +55,11 @@ class Gist
     private $public;
 
     /**
+     * @var bool
+     */
+    private $voting;
+
+    /**
      * Creates a new Gist object from Eloquent
      *
      * @param EloquentGist $eloquentGist
@@ -67,6 +72,7 @@ class Gist
         $gist->id = $eloquentGist->id;
         $gist->description = $eloquentGist->description;
         $gist->public = $eloquentGist->public;
+        $gist->voting = $eloquentGist->enable_voting;
 
         $gist->comments = collect(); // we don't store comments in the db right now
         $gist->commentCount = $eloquentGist->comments;
@@ -111,5 +117,25 @@ class Gist
     public function isSecret()
     {
         return !$this->isPublic();
+    }
+
+    /**
+     * Sees if the Gist is open for voting
+     *
+     * @return bool
+     */
+    public function isVoting()
+    {
+        return $this->voting;
+    }
+
+    /**
+     * Sees if the Gist is not open for voting
+     *
+     * @return bool
+     */
+    public function isNotVoting()
+    {
+        return !$this->isVoting();
     }
 }

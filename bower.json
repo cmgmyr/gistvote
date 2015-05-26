@@ -1,8 +1,9 @@
 {
-    "name": "gistVote",
-    "dependencies": {
-        "jquery": "~2.1.1",
-        "bootstrap": "~3.3",
-        "fontawesome": "~4.3"
-    }
+  "name": "gistVote",
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.3",
+    "fontawesome": "~4.3",
+    "bootstrap-toggle": "~2.2.0"
+  }
 }
