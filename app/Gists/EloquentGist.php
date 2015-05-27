@@ -52,4 +52,14 @@ class EloquentGist extends Model
      * @var array
      */
     protected $dates = ['created_at', 'updated_at', 'last_scan'];
+
+    /**
+     * Gist belongs to a user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('GistVote\Users\User');
+    }
 }

@@ -60,6 +60,11 @@ class Gist
     private $voting;
 
     /**
+     * @var string
+     */
+    public $owner;
+
+    /**
      * Creates a new Gist object from Eloquent
      *
      * @param EloquentGist $eloquentGist
@@ -85,6 +90,49 @@ class Gist
         $gist->created_at = $eloquentGist->created_at;
         $gist->updated_at = $eloquentGist->updated_at;
         $gist->last_scan = $eloquentGist->last_scan;
+        $gist->owner = $eloquentGist->user->username;
+
+        return $gist;
+    }
+
+    /**
+     * Creates a new Gist from the GitHub API
+     *
+     * @param EloquentGist $eloquentGist
+     * @param $gitHubGist
+     * @return Gist
+     */
+    public static function fromGitHub(EloquentGist $eloquentGist, $gitHubGist)
+    {
+        $gist = new self;
+
+        $gist->id = $gitHubGist['gist']['id'];
+        $gist->description = $gitHubGist['gist']['description'];
+        $gist->public = $gitHubGist['gist']['public'];
+        $gist->voting = $eloquentGist->enable_voting;
+
+        $comments = [];
+        if (is_array($gitHubGist['comments'])) {
+            foreach ($gitHubGist['comments'] as $comment) {
+                $comments[] = new GistComment($comment['id'], $comment['user'], $comment['body'],
+                    $comment['created_at'], $comment['updated_at']);
+            }
+        }
+        $gist->comments = collect($comments);
+        $gist->commentCount = $gist->comments->count();
+
+        $files = [];
+        if (is_array($gitHubGist['gist']['files'])) {
+            foreach ($gitHubGist['gist']['files'] as $file) {
+                $files[] = new GistFile($file['filename'], $file['language'], $file['content']);
+            }
+        }
+        $gist->files = collect($files);
+        $gist->fileCount = $gist->files->count();
+
+        $gist->created_at = Carbon::parse($gitHubGist['gist']['created_at']);
+        $gist->updated_at = Carbon::parse($gitHubGist['gist']['updated_at']);
+        $gist->owner = $gitHubGist['gist']['user']['login'];
 
         return $gist;
     }
@@ -137,5 +185,15 @@ class Gist
     public function isNotVoting()
     {
         return !$this->isVoting();
+    }
+
+    /**
+     * Generates the "show" url for the Gist
+     *
+     * @return string
+     */
+    public function url()
+    {
+        return route('gists.show', [$this->owner, $this->id]);
     }
 }

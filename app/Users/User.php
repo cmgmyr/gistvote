@@ -30,4 +30,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['token', 'remember_token'];
+
+    /**
+     * A User has many Gists
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function gists()
+    {
+        return $this->hasMany('GistVote\Gists\EloquentGist');
+    }
 }

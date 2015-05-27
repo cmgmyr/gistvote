@@ -3,7 +3,7 @@
         <div class="media-body">
             <div class="row">
                 <div class="col-md-9">
-                    <h3 class="media-heading"><a href="">{{ $gist->firstFile()->name }}</a> @if($gist->isSecret())<i class="fa fa-lock"></i>@endif</h3>
+                    <h3 class="media-heading"><a href="{{ $gist->url() }}">{{ $gist->firstFile()->name }}</a> @if($gist->isSecret())<i class="fa fa-lock"></i>@endif</h3>
                     <p class="text-muted">Created {{ $gist->created_at->diffForHumans() }}</p>
                     <p>{{ $gist->description }}</p>
                 </div>
