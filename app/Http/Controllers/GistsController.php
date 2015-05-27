@@ -3,6 +3,7 @@
 use Gistvote\Gists\GistRepository;
 use Gistvote\Services\GitHub;
 use Illuminate\Contracts\Auth\Guard as Auth;
+use Illuminate\Support\Facades\Cache;
 
 class GistsController extends Controller
 {
@@ -63,6 +64,32 @@ class GistsController extends Controller
         }
 
         return redirect('/');
+    }
+
+    /**
+     * Shows the view page for a Gist
+     *
+     * @param $username
+     * @param $id
+     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function show($username, $id)
+    {
+        // @todo: take caching out, maybe?
+        $cacheKey = md5('gist_'.$username.'+'.$id);
+        if (Cache::has($cacheKey)) {
+            $gist = Cache::get($cacheKey);
+        } else {
+            $gist = $this->repository->findById($id);
+            Cache::put($cacheKey, $gist, 10);
+        }
+
+        if ($username != $gist->owner || $gist->isNotVoting()) {
+            // @todo: show flash message
+            return redirect('/');
+        }
+
+        return view('gists.show')->with('gist', $gist);
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php namespace Gistvote\Gists;
 
 use Carbon\Carbon;
+use Gistvote\Services\GitHub;
 
 class GistRepository
 {
@@ -51,6 +52,22 @@ class GistRepository
         $gist->save();
 
         return Gist::fromEloquent($gist);
+    }
+
+    /**
+     * Finds a gist by ID. Grabs data from Eloquent and GitHub API
+     *
+     * @param $id
+     * @return Gist
+     */
+    public function findById($id)
+    {
+        $eloquentGist = EloquentGist::find($id);
+        $gh = new GitHub($eloquentGist->user);
+
+        $gist = $gh->gist($id);
+
+        return Gist::fromGitHub($eloquentGist, $gist);
     }
 
     /**

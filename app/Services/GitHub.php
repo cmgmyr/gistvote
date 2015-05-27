@@ -57,6 +57,9 @@ class GitHub
      */
     public function gist($id)
     {
-        return $this->client->api('gists')->show($id);
+        $gist = $this->client->api('gists')->show($id);
+        $comments = $this->client->api('gist')->comments()->all($id);
+
+        return ['gist' => $gist, 'comments' => $comments];
     }
 }
