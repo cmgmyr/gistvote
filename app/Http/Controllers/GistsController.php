@@ -73,7 +73,20 @@ class GistsController extends Controller
      */
     public function activateGist($id)
     {
-        $this->repository->activate($id);
+        $this->repository->activate($id, $this->auth->id());
+
+        return ['status' => 'OK'];
+    }
+
+    /**
+     * Deactivates a Gist for voting
+     *
+     * @param $id
+     * @return array
+     */
+    public function deactivateGist($id)
+    {
+        $this->repository->deactivate($id, $this->auth->id());
 
         return ['status' => 'OK'];
     }

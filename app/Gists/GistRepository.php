@@ -57,11 +57,25 @@ class GistRepository
      * Activates a Gist for voting via Eloquent
      *
      * @param $id
+     * @param $userId
      */
-    public function activate($id)
+    public function activate($id, $userId)
     {
-        $gist = EloquentGist::find($id);
+        $gist = EloquentGist::where('id', $id)->where('user_id', $userId)->first();
         $gist->enable_voting = true;
+        $gist->save();
+    }
+
+    /**
+     * Deactivates a Gist for voting via Eloquent
+     *
+     * @param $id
+     * @param $userId
+     */
+    public function deactivate($id, $userId)
+    {
+        $gist = EloquentGist::where('id', $id)->where('user_id', $userId)->first();
+        $gist->enable_voting = false;
         $gist->save();
     }
 }

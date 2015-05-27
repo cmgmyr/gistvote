@@ -10,6 +10,7 @@ Route::group(['prefix' => 'gists'], function () {
 // API-ish stuff, excluded from CSRF validation. @todo: maybe find a better solution
 Route::group(['prefix' => 'api'], function () {
     Route::patch('gists/{id}/activate', 'GistsController@activateGist');
+    Route::patch('gists/{id}/deactivate', 'GistsController@deactivateGist');
 });
 
 // Authentication
