@@ -30,7 +30,7 @@
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading"><a href="{{ $comment->profile() }}" target="_blank">{{ $comment->username() }}</a></h4>
-                    {{ $comment->body }}
+                    {!! $comment->renderHtml() !!}
                 </div>
             </article>
         @endforeach

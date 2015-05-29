@@ -1,6 +1,7 @@
 <?php namespace Gistvote\Gists;
 
 use Carbon\Carbon;
+use Michelf\MarkdownExtra;
 
 class GistComment
 {
@@ -66,5 +67,10 @@ class GistComment
     public function profile()
     {
         return $this->user['html_url'];
+    }
+
+    public function renderHtml()
+    {
+        return MarkdownExtra::defaultTransform($this->body);
     }
 }
