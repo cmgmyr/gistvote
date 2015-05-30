@@ -1,7 +1,7 @@
 <?php namespace Gistvote\Gists;
 
 use Carbon\Carbon;
-use Michelf\MarkdownExtra;
+use Gistvote\Parser\ParserFacade as Parser;
 
 class GistComment
 {
@@ -69,8 +69,13 @@ class GistComment
         return $this->user['html_url'];
     }
 
+    /**
+     * Transforms the raw/markdown content to html
+     *
+     * @return string
+     */
     public function renderHtml()
     {
-        return MarkdownExtra::defaultTransform($this->body);
+        return Parser::transform($this->body);
     }
 }

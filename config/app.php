@@ -148,6 +148,7 @@ return [
         'Gistvote\Providers\AppServiceProvider',
         'Gistvote\Providers\ComposerServiceProvider',
         'Gistvote\Providers\EventServiceProvider',
+        'Gistvote\Providers\ParserServiceProvider',
         'Gistvote\Providers\RouteServiceProvider',
 
     ],
@@ -199,6 +200,8 @@ return [
         'View'      => 'Illuminate\Support\Facades\View',
 
         'Socialize' => 'Laravel\Socialite\Facades\Socialite',
+
+        'Parser'    => 'Gistvote\Parser\ParserFacade',
 
     ],
 
