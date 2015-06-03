@@ -75,14 +75,7 @@ class GistsController extends Controller
      */
     public function show($username, $id)
     {
-        // @todo: take caching out, maybe?
-        $cacheKey = md5('gist_'.$username.'+'.$id);
-        if (Cache::has($cacheKey)) {
-            $gist = Cache::get($cacheKey);
-        } else {
-            $gist = $this->repository->findById($id);
-            Cache::put($cacheKey, $gist, 10);
-        }
+        $gist = $this->repository->findById($id);
 
         if ($username != $gist->owner || $gist->isNotVoting()) {
             // @todo: show flash message
