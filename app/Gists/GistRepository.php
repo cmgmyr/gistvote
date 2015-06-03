@@ -67,6 +67,8 @@ class GistRepository
 
         $gist = $gh->gist($id);
 
+        $this->updateFromGitHub($id, $gist);
+
         return Gist::fromGitHub($eloquentGist, $gist);
     }
 
@@ -94,5 +96,32 @@ class GistRepository
         $gist = EloquentGist::where('id', $id)->where('user_id', $userId)->first();
         $gist->enable_voting = false;
         $gist->save();
+    }
+
+    /**
+     * Updates the database from a recently fetched API call to GitHub
+     *
+     * @param $id
+     * @param $gitHubGist
+     */
+    public function updateFromGitHub($id, $gitHubGist)
+    {
+        $gist = EloquentGist::find($id);
+        if ($gist) {
+            // @todo: fix this file stuff, it's bad
+            $gist->file = array_keys($gitHubGist['gist']['files'])[0];
+            $gist->file_language = $gitHubGist['gist']['files'][$gist->file]['language'];
+            $gist->file_content = file_get_contents($gitHubGist['gist']['files'][$gist->file]['raw_url']);
+
+            $gist->description = $gitHubGist['gist']['description'];
+            $gist->public = $gitHubGist['gist']['public'];
+            $gist->files = count($gitHubGist['gist']['files']);
+            $gist->comments = count($gitHubGist['comments']);
+            $gist->created_at = Carbon::parse($gitHubGist['gist']['created_at']);
+            $gist->updated_at = Carbon::parse($gitHubGist['gist']['updated_at']);
+            $gist->last_scan = Carbon::now();
+
+            $gist->save();
+        }
     }
 }
