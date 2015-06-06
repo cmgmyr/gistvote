@@ -101,4 +101,18 @@ class GistComment
             $this->vote = 'y';
         }
     }
+
+    /**
+     * Checks to see if the comment has a vote
+     *
+     * @return bool
+     */
+    public function hasVote()
+    {
+        if ($this->vote === null) {
+            return false;
+        }
+
+        return true;
+    }
 }
