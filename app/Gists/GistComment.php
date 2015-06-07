@@ -115,4 +115,32 @@ class GistComment
 
         return true;
     }
+
+    /**
+     * Checks to see if the comment has a positive (+1) vote
+     *
+     * @return bool
+     */
+    public function hasPositiveVote()
+    {
+        if ($this->vote != 'y') {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Checks to see if the comment has a negative (-1) vote
+     *
+     * @return bool
+     */
+    public function hasNegativeVote()
+    {
+        if ($this->vote != 'n') {
+            return false;
+        }
+
+        return true;
+    }
 }
