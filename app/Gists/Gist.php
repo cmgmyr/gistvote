@@ -132,7 +132,7 @@ class Gist
 
         $gist->created_at = Carbon::parse($gitHubGist['gist']['created_at']);
         $gist->updated_at = Carbon::parse($gitHubGist['gist']['updated_at']);
-        $gist->owner = $gitHubGist['gist']['user']['login'];
+        $gist->owner = $gitHubGist['gist']['owner']['login'];
 
         return $gist;
     }
