@@ -43,14 +43,15 @@
             "php artisan clear-compiled",
             "php artisan optimize"
         ],
+        "post-root-package-install": [
+            "php -r \"copy('.env.example', '.env');\""
+        ],
         "post-create-project-cmd": [
-            "php -r \"copy('.env.example', '.env');\"",
             "php artisan key:generate"
         ]
     },
     "config": {
         "preferred-install": "dist"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "minimum-stability": "stable"
 }
