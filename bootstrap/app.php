@@ -27,18 +27,18 @@ $app = new Illuminate\Foundation\Application(
 */
 
 $app->singleton(
-    'Illuminate\Contracts\Http\Kernel',
-    'Gistvote\Http\Kernel'
+    Illuminate\Contracts\Http\Kernel::class,
+    Gistvote\Http\Kernel::class
 );
 
 $app->singleton(
-    'Illuminate\Contracts\Console\Kernel',
-    'Gistvote\Console\Kernel'
+    Illuminate\Contracts\Console\Kernel::class,
+    Gistvote\Console\Kernel::class
 );
 
 $app->singleton(
-    'Illuminate\Contracts\Debug\ExceptionHandler',
-    'Gistvote\Exceptions\Handler'
+    Illuminate\Contracts\Debug\ExceptionHandler::class,
+    Gistvote\Exceptions\Handler::class
 );
 
 /*

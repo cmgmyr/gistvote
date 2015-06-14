@@ -11,7 +11,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        'Gistvote\Console\Commands\Inspire',
+        \Gistvote\Console\Commands\Inspire::class,
     ];
 
     /**

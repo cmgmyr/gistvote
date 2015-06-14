@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model'  => 'Gistvote\User',
+        'model'  => Gistvote\User::class,
         'key' => '',
         'secret' => '',
     ],

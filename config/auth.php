@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'model' => 'Gistvote\Users\User',
+    'model' => Gistvote\Users\User::class,
 
     /*
     |--------------------------------------------------------------------------
