@@ -17,7 +17,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <pre><code class="language-{{ $gist->firstFile()->syntaxLanguage() }} line-numbers">{{ $gist->firstFile()->snippet() }}</code></pre>
+                    {!! $gist->firstFile()->renderSnippetHtml() !!}
                 </div>
             </div>
         </div>

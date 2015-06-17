@@ -64,4 +64,14 @@ class GistFile
 
         return $syntax;
     }
+
+    /**
+     * Renders an HTML version of the file's snippet
+     *
+     * @return string
+     */
+    public function renderSnippetHtml()
+    {
+        return '<pre><code class="language-' . $this->syntaxLanguage() . ' line-numbers">' . $this->snippet() . '</code></pre>';
+    }
 }
