@@ -28,7 +28,7 @@ class GistFile
     {
         $this->name = $name;
         $this->language = $language;
-        $this->content = $content;
+        $this->content = htmlentities($content);
     }
 
     /**
