@@ -72,6 +72,27 @@ class GistFile
      */
     public function renderSnippetHtml()
     {
-        return '<pre><code class="language-' . $this->syntaxLanguage() . ' line-numbers">' . $this->snippet() . '</code></pre>';
+        return $this->renderHtml($this->snippet());
+    }
+
+    /**
+     * Renders an HTML version of the file's content
+     *
+     * @return string
+     */
+    public function renderFileHtml()
+    {
+        return $this->renderHtml($this->content);
+    }
+
+    /**
+     * Renders the correctly formatted HTML for the file
+     *
+     * @param $content
+     * @return string
+     */
+    public function renderHtml($content)
+    {
+        return '<pre><code class="language-' . $this->syntaxLanguage() . ' line-numbers">' . $content . '</code></pre>';
     }
 }
