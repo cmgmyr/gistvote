@@ -16,7 +16,7 @@
                             <div class="media-body">
                                 <h3 class="media-heading">{{ $file->name }}</h3>
 
-                                <pre><code class="language-{{ $file->syntaxLanguage() }} line-numbers">{{ $file->content }}</code></pre>
+                                {!! $file->renderFileHtml() !!}
                             </div>
                         </div>
                     @endforeach
