@@ -1,5 +1,6 @@
 <?php namespace Gistvote\Gists;
 
+use Gistvote\Parser\ParserFacade as Parser;
 use Illuminate\Support\Facades\Config;
 
 class GistFile
@@ -93,6 +94,12 @@ class GistFile
      */
     public function renderHtml($content)
     {
-        return '<pre><code class="language-' . $this->syntaxLanguage() . ' line-numbers">' . $content . '</code></pre>';
+        $language = $this->syntaxLanguage();
+
+        if ($language == 'markdown') {
+            return '<div class="markdown">' . Parser::transform($content) . '</div>';
+        }
+
+        return '<pre><code class="language-' . $language . ' line-numbers">' . $content . '</code></pre>';
     }
 }
