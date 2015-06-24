@@ -3,7 +3,6 @@
 use Gistvote\Gists\GistRepository;
 use Gistvote\Services\GitHub;
 use Illuminate\Contracts\Auth\Guard as Auth;
-use Illuminate\Support\Facades\Cache;
 
 class GistsController extends Controller
 {
