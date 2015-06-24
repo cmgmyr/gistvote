@@ -1,6 +1,7 @@
 <?php namespace Gistvote\Gists;
 
 use Carbon\Carbon;
+use Gistvote\Voters\Voter;
 
 class Gist
 {
@@ -63,6 +64,19 @@ class Gist
      * @var string
      */
     public $owner;
+
+    /**
+     * @var array
+     */
+    private $voters;
+
+    public function __construct()
+    {
+        $this->voters = [
+            'positive' => collect(),
+            'negative' => collect(),
+        ];
+    }
 
     /**
      * Creates a new Gist object from Eloquent
@@ -195,5 +209,25 @@ class Gist
     public function url()
     {
         return route('gists.show', [$this->owner, $this->id]);
+    }
+
+    /**
+     * Adds a new negative voter
+     *
+     * @param Voter $voter
+     */
+    public function setNegativeVote(Voter $voter)
+    {
+        $this->voters['negative']->push($voter);
+    }
+
+    /**
+     * Adds a new positive voter
+     *
+     * @param Voter $voter
+     */
+    public function setPositiveVote(Voter $voter)
+    {
+        $this->voters['positive']->push($voter);
     }
 }
