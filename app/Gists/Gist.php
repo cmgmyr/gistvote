@@ -128,8 +128,7 @@ class Gist
         $comments = [];
         if (is_array($gitHubGist['comments'])) {
             foreach ($gitHubGist['comments'] as $comment) {
-                $comments[] = new GistComment($comment['id'], $comment['user'], $comment['body'],
-                    $comment['created_at'], $comment['updated_at']);
+                $comments[] = new GistComment($comment);
             }
         }
         $gist->comments = collect($comments);

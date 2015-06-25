@@ -35,13 +35,22 @@ class GistComment
      */
     private $vote = null;
 
-    public function __construct($id, array $user, $body, $created_at, $updated_at)
+    public function __construct($data)
     {
-        $this->id = $id;
-        $this->user = $user;
-        $this->body = $body;
-        $this->created_at = Carbon::parse($created_at);
-        $this->updated_at = Carbon::parse($updated_at);
+        $defaults = [
+            'id'         => null,
+            'user'       => null,
+            'body'       => null,
+            'created_at' => null,
+            'updated_at' => null,
+        ];
+        $data = array_merge($defaults, $data);
+
+        $this->id = $data['id'];
+        $this->user = $data['user'];
+        $this->body = $data['body'];
+        $this->created_at = Carbon::parse($data['created_at']);
+        $this->updated_at = Carbon::parse($data['updated_at']);
 
         $this->parseForVotes();
     }
