@@ -217,7 +217,9 @@ class Gist
      */
     public function setNegativeVote(Voter $voter)
     {
-        $this->voters['negative']->push($voter);
+        $this->forgetOppositeVote('positive', $voter);
+
+        $this->voters['negative']->put($voter->username(), $voter);
     }
 
     /**
@@ -227,6 +229,20 @@ class Gist
      */
     public function setPositiveVote(Voter $voter)
     {
-        $this->voters['positive']->push($voter);
+        $this->forgetOppositeVote('negative', $voter);
+
+        $this->voters['positive']->put($voter->username(), $voter);
+    }
+
+    /**
+     * Removes a vote from the opposing collection so that each user
+     * only gets one vote per gist
+     *
+     * @param $collection
+     * @param $voter
+     */
+    private function forgetOppositeVote($collection, $voter)
+    {
+        $this->voters[$collection]->forget($voter->username());
     }
 }
