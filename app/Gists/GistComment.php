@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use Gistvote\Parser\ParserFacade as Parser;
+use Gistvote\Voters\Voter;
 
 class GistComment
 {
@@ -35,7 +36,12 @@ class GistComment
      */
     private $vote = null;
 
-    public function __construct($data)
+    /**
+     * @var Gist
+     */
+    private $gist;
+
+    public function __construct($data, Gist $gist)
     {
         $defaults = [
             'id'         => null,
@@ -52,6 +58,7 @@ class GistComment
         $this->created_at = Carbon::parse($data['created_at']);
         $this->updated_at = Carbon::parse($data['updated_at']);
 
+        $this->gist = $gist;
         $this->parseForVotes();
     }
 
@@ -102,12 +109,18 @@ class GistComment
      */
     private function parseForVotes()
     {
+        $voter = new Voter($this->username(), $this->avatar());
+
         if (str_contains($this->body, '-1')) {
             $this->vote = 'n';
+
+            $this->gist->setNegativeVote($voter);
         }
 
         if (str_contains($this->body, '+1')) {
             $this->vote = 'y';
+
+            $this->gist->setPositiveVote($voter);
         }
     }
 
