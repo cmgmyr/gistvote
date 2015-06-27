@@ -2,9 +2,10 @@
 
 use Carbon\Carbon;
 use Gistvote\Parser\ParserFacade as Parser;
+use Gistvote\Users\GitHubUser;
 use Gistvote\Voters\Voter;
 
-class GistComment
+class GistComment implements GitHubUser
 {
     /**
      * @var int
