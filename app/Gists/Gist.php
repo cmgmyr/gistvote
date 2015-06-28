@@ -245,4 +245,24 @@ class Gist
     {
         $this->voters[$collection]->forget($voter->username());
     }
+
+    /**
+     * Returns the positive votes collection
+     *
+     * @return mixed
+     */
+    public function getPositiveVotes()
+    {
+        return $this->voters['positive'];
+    }
+
+    /**
+     * Returns the negative votes collection
+     *
+     * @return mixed
+     */
+    public function getNegativeVotes()
+    {
+        return $this->voters['negative'];
+    }
 }

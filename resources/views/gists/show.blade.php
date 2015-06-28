@@ -5,8 +5,28 @@
     <p>{{ $gist->description }}</p>
 
     <div class="row">
-        <div class="col-xs-12 col-md-3">
-            Sidebar...
+        <div class="col-xs-12 col-md-3 vote_tallies">
+            @if($gist->getPositiveVotes()->count() > 0)
+                <div class="alert alert-success">
+                    <h2>+1's</h2>
+                    @foreach($gist->getPositiveVotes()->all() as $voter)
+                        <a href="{{ $voter->profile() }}" target="_blank">
+                            <img class="avatar img-circle" src="{{ $voter->avatar() }}" alt="{{ $voter->username() }}">
+                        </a>
+                    @endforeach
+                </div>
+            @endif
+
+            @if($gist->getNegativeVotes()->count() > 0)
+                <div class="alert alert-danger">
+                    <h2>+1's</h2>
+                    @foreach($gist->getNegativeVotes()->all() as $voter)
+                        <a href="{{ $voter->profile() }}" target="_blank">
+                            <img class="avatar img-circle" src="{{ $voter->avatar() }}" alt="{{ $voter->username() }}">
+                        </a>
+                    @endforeach
+                </div>
+            @endif
         </div>
         <div class="col-xs-12 col-md-9">
             @if($gist->fileCount > 0)
