@@ -14,7 +14,8 @@
         "laravel/socialite": "~2.0",
         "knplabs/github-api": "~1.4",
         "michelf/php-markdown": "~1.4",
-        "emojione/emojione": "dev-master"
+        "emojione/emojione": "dev-master",
+        "laravelcollective/html": "~5.0"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",

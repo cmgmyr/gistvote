@@ -141,6 +141,7 @@ return [
          * Other Service Providers
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -200,6 +201,8 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 
         'Socialize' => Laravel\Socialite\Facades\Socialite::class,
+        'Form'      => Collective\Html\FormFacade::class,
+        'Html'      => Collective\Html\HtmlFacade::class,
 
         'Parser'    => Gistvote\Parser\ParserFacade::class,
 
