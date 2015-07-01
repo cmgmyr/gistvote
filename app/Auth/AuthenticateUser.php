@@ -60,7 +60,7 @@ class AuthenticateUser
      */
     private function getAuthorizationFirst()
     {
-        return $this->socialite->driver('github')->redirect();
+        return $this->socialite->driver('github')->scopes(['user', 'gist'])->redirect();
     }
 
     /**
