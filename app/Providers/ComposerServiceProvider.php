@@ -1,6 +1,5 @@
 <?php namespace Gistvote\Providers;
 
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class ComposerServiceProvider extends ServiceProvider
@@ -12,6 +11,6 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        View::composer('layouts.app', 'Gistvote\Http\ViewComposers\AppComposer');
+        view()->composer('*', 'Gistvote\Http\ViewComposers\AppComposer');
     }
 }
