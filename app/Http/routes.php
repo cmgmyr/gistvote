@@ -4,6 +4,7 @@ Route::get('/', ['as' => 'home', 'uses' =>'GistsController@index']);
 
 // Gists
 Route::get('{username}/{id}', ['as' => 'gists.show', 'uses' =>'GistsController@show']);
+Route::post('{username}/{id}', ['as' => 'gists.store', 'uses' =>'GistsController@store']);
 Route::get('refresh', ['as' => 'gists.refresh', 'uses' =>'GistsController@refresh']);
 
 // API-ish stuff, excluded from CSRF validation. @todo: maybe find a better solution
