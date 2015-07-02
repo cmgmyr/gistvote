@@ -37,7 +37,7 @@ class Voter implements GitHubUser
      */
     public function profile()
     {
-        return 'https://github.com/' . $this->username;
+        return 'https://github.com/' . $this->username();
     }
 
     /**
