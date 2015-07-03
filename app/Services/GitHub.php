@@ -62,4 +62,15 @@ class GitHub
 
         return ['gist' => $gist, 'comments' => $comments];
     }
+
+    /**
+     * Adds a new comment to an existing gist
+     *
+     * @param $id
+     * @param $comment
+     */
+    public function gistComment($id, $comment)
+    {
+        $this->client->api('gist')->comments()->create($id, $comment);
+    }
 }
