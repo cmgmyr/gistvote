@@ -3,6 +3,7 @@
 use Gistvote\Gists\GistRepository;
 use Gistvote\Services\GitHub;
 use Illuminate\Contracts\Auth\Guard as Auth;
+use Illuminate\Support\Facades\Input;
 
 class GistsController extends Controller
 {
@@ -82,6 +83,36 @@ class GistsController extends Controller
         }
 
         return view('gists.show')->with('gist', $gist);
+    }
+
+    /**
+     * Saves a new comment/vote to a gist
+     *
+     * @param $username
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function store($username, $id)
+    {
+        $gist = $this->repository->findById($id);
+
+        if ($username != $gist->owner || $gist->isNotVoting()) {
+            // @todo: show flash message
+            return redirect('/');
+        }
+
+        // @todo: validation...
+
+        $comment = Input::get('comment');
+
+        $user = $this->auth->user();
+        $gh = new GitHub($user);
+
+        $gh->gistComment($id, $comment);
+
+        // @todo: flash message, comment successful
+
+        return redirect()->route('gists.show', [$username, $id]);
     }
 
     /**
