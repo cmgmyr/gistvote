@@ -3,6 +3,7 @@
 use Gistvote\Gists\GistRepository;
 use Gistvote\Services\GitHub;
 use Illuminate\Contracts\Auth\Guard as Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
 class GistsController extends Controller
@@ -88,11 +89,12 @@ class GistsController extends Controller
     /**
      * Saves a new comment/vote to a gist
      *
+     * @param Request $request
      * @param $username
      * @param $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store($username, $id)
+    public function store(Request $request, $username, $id)
     {
         $gist = $this->repository->findById($id);
 
@@ -101,7 +103,9 @@ class GistsController extends Controller
             return redirect('/');
         }
 
-        // @todo: validation...
+        $this->validate($request, [
+            'comment' => 'required',
+        ]);
 
         $comment = Input::get('comment');
 

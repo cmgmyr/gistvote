@@ -55,6 +55,8 @@
 
     <div class="container">
         <div class="content">
+            @include('layouts.partials.errors')
+
             @yield('content')
         </div>
     </div>
