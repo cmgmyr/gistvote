@@ -19,6 +19,11 @@ class GistsController extends Controller
     private $repository;
 
     /**
+     * @var GitHub
+     */
+    private $github;
+
+    /**
      * Enable auth middleware, redirect if not logged in.
      *
      * @param Auth $auth
@@ -30,6 +35,7 @@ class GistsController extends Controller
 
         $this->auth = $auth;
         $this->repository = $repository;
+        $this->github = new GitHub($this->auth->user());
     }
 
     /**
@@ -55,13 +61,10 @@ class GistsController extends Controller
      */
     public function refresh()
     {
-        $user = $this->auth->user();
-        $gh = new GitHub($user);
-
-        $gists = $gh->gists();
+        $gists = $this->github->gists();
 
         foreach ($gists as $gist) {
-            $this->repository->findByIdOrCreate($gist, $user->id);
+            $this->repository->findByIdOrCreate($gist, $this->auth->id());
         }
 
         return redirect('/');
@@ -109,10 +112,7 @@ class GistsController extends Controller
 
         $comment = Input::get('comment');
 
-        $user = $this->auth->user();
-        $gh = new GitHub($user);
-
-        $gh->gistComment($id, $comment);
+        $this->github->gistComment($id, $comment);
 
         // @todo: flash message, comment successful
 
