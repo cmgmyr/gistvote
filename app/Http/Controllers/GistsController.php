@@ -129,6 +129,11 @@ class GistsController extends Controller
     {
         $this->repository->activate($id, $this->auth->id());
 
+        $gistUrl = route('gists.show', ['username' => $this->auth->user()->username(), 'id' => $id]);
+        $comment = 'This gist has vote tracking powered by [Gist.vote](' . $gistUrl . ')';
+
+        $this->github->gistComment($id, $comment);
+
         return ['status' => 'OK'];
     }
 
