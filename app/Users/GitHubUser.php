@@ -3,7 +3,6 @@ namespace Gistvote\Users;
 
 interface GitHubUser
 {
-
     /**
      * Returns the username for the user
      *
