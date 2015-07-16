@@ -77,11 +77,21 @@ class GistRepository
      *
      * @param $id
      * @param $userId
+     * @param GitHub $gitHub
      */
-    public function activate($id, $userId)
+    public function activate($id, $userId, GitHub $gitHub)
     {
         $gist = EloquentGist::where('id', $id)->where('user_id', $userId)->first();
         $gist->enable_voting = true;
+
+        if (!$gist->has_powered_by) {
+            $gistUrl = route('gists.show', ['username' => $gist->user->username(), 'id' => $id]);
+            $comment = 'This gist has vote tracking powered by [Gist.vote](' . $gistUrl . ')';
+
+            $gitHub->gistComment($id, $comment);
+            $gist->has_powered_by = true;
+        }
+
         $gist->save();
     }
 
