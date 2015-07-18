@@ -21,7 +21,7 @@ class GistsController extends Controller
     /**
      * @var GitHub
      */
-    private $github;
+    private $github = null;
 
     /**
      * Enable auth middleware, redirect if not logged in.
@@ -35,7 +35,9 @@ class GistsController extends Controller
 
         $this->auth = $auth;
         $this->repository = $repository;
-        $this->github = new GitHub($this->auth->user());
+        if ($this->auth->check()) {
+            $this->github = new GitHub($this->auth->user());
+        }
     }
 
     /**
