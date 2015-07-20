@@ -11,8 +11,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Gistvote\Events\SomeEvent' => [
-            'Gistvote\Listeners\EventListener',
+        'Gistvote\Events\GistWasActivated' => [
+            'Gistvote\Listeners\AddPoweredByComment',
         ],
     ];
 
