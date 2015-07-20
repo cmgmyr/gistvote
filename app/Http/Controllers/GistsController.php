@@ -129,7 +129,7 @@ class GistsController extends Controller
      */
     public function activateGist($id)
     {
-        $this->repository->activate($id, $this->auth->id(), $this->github);
+        $this->repository->activate($id, $this->auth->id());
 
         return ['status' => 'OK'];
     }
