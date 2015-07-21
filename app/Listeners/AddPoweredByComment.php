@@ -5,7 +5,6 @@ use Gistvote\Services\GitHub;
 
 class AddPoweredByComment
 {
-
     /**
      * Handle the event.
      *
