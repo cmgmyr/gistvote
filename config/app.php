@@ -149,6 +149,7 @@ return [
         Gistvote\Providers\AppServiceProvider::class,
         Gistvote\Providers\ComposerServiceProvider::class,
         Gistvote\Providers\EventServiceProvider::class,
+        Gistvote\Providers\FlashServiceProvider::class,
         Gistvote\Providers\ParserServiceProvider::class,
         Gistvote\Providers\RouteServiceProvider::class,
 
@@ -205,6 +206,7 @@ return [
         'Html'      => Collective\Html\HtmlFacade::class,
 
         'Parser'    => Gistvote\Parser\ParserFacade::class,
+        'Flash'     => Gistvote\Services\Notifications\Flash::class,
 
     ],
 
