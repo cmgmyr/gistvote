@@ -2,9 +2,11 @@
 
 use Gistvote\Gists\GistRepository;
 use Gistvote\Services\GitHub;
+use Gistvote\Services\Notifications\Flash;
 use Illuminate\Contracts\Auth\Guard as Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
 
 class GistsController extends Controller
 {
@@ -22,6 +24,8 @@ class GistsController extends Controller
      * @var GitHub
      */
     private $github = null;
+
+    private $gistNotFoundMessage = 'The gist you were trying to access is not available right now. Please try again later.';
 
     /**
      * Enable auth middleware, redirect if not logged in.
@@ -84,7 +88,7 @@ class GistsController extends Controller
         $gist = $this->repository->findById($id);
 
         if ($username != $gist->owner || $gist->isNotVoting()) {
-            // @todo: show flash message
+            Flash::error($this->gistNotFoundMessage);
             return redirect('/');
         }
 
@@ -104,19 +108,24 @@ class GistsController extends Controller
         $gist = $this->repository->findById($id);
 
         if ($username != $gist->owner || $gist->isNotVoting()) {
-            // @todo: show flash message
+            Flash::error($this->gistNotFoundMessage);
             return redirect('/');
         }
 
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'comment' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            Flash::validation($validator->errors());
+            return redirect()->back()->withInput();
+        }
 
         $comment = Input::get('comment');
 
         $this->github->gistComment($id, $comment);
 
-        // @todo: flash message, comment successful
+        Flash::success('Your comment was successfully posted.');
 
         return redirect()->route('gists.show', [$username, $id]);
     }
