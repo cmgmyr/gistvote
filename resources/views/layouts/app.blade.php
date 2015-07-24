@@ -55,7 +55,7 @@
 
     <div class="container">
         <div class="content">
-            @include('layouts.partials.errors')
+            @include('common.flash')
 
             @yield('content')
         </div>
