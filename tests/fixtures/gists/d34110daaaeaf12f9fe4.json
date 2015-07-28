@@ -1,0 +1,78 @@
+{
+    "url": "https://api.github.com/gists/d34110daaaeaf12f9fe4",
+    "forks_url": "https://api.github.com/gists/d34110daaaeaf12f9fe4/forks",
+    "commits_url": "https://api.github.com/gists/d34110daaaeaf12f9fe4/commits",
+    "id": "d34110daaaeaf12f9fe4",
+    "git_pull_url": "https://gist.github.com/d34110daaaeaf12f9fe4.git",
+    "git_push_url": "https://gist.github.com/d34110daaaeaf12f9fe4.git",
+    "html_url": "https://gist.github.com/d34110daaaeaf12f9fe4",
+    "files": {
+        "routes.php": {
+            "filename": "routes.php",
+            "type": "application/x-httpd-php",
+            "language": "PHP",
+            "raw_url": "https://gist.githubusercontent.com/cmgmyr/d34110daaaeaf12f9fe4/raw/145ee4230938a7a93cb015175ed11f25b07b9d5f/routes.php",
+            "size": 716,
+            "truncated": false,
+            "content": "<?php\n\nRoute::get('/', ['as' => 'home', 'uses' =>'GistsController@index']);\n\n// Gists\nRoute::get('{username}/{id}', ['as' => 'gists.show', 'uses' =>'GistsController@show']);\nRoute::get('refresh', ['as' => 'gists.refresh', 'uses' =>'GistsController@refresh']);\n\n// API-ish stuff, excluded from CSRF validation. @todo: maybe find a better solution\nRoute::group(['prefix' => 'api'], function () {\n    Route::patch('gists/{id}/activate', 'GistsController@activateGist');\n    Route::patch('gists/{id}/deactivate', 'GistsController@deactivateGist');\n});\n\n// Authentication\nRoute::get('login', ['as' => 'login', 'uses' =>'AuthController@login']);\nRoute::get('logout', ['as' => 'logout', 'uses' =>'AuthController@logout']);\n"
+        }
+    },
+    "public": false,
+    "created_at": "2015-05-27T17:54:06Z",
+    "updated_at": "2015-07-08T01:02:45Z",
+    "description": "Just a little test to show the routes file",
+    "comments": 9,
+    "user": null,
+    "comments_url": "https://api.github.com/gists/d34110daaaeaf12f9fe4/comments",
+    "owner": {
+        "login": "cmgmyr",
+        "id": 4693481,
+        "avatar_url": "https://avatars.githubusercontent.com/u/4693481?v=3",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/cmgmyr",
+        "html_url": "https://github.com/cmgmyr",
+        "followers_url": "https://api.github.com/users/cmgmyr/followers",
+        "following_url": "https://api.github.com/users/cmgmyr/following{/other_user}",
+        "gists_url": "https://api.github.com/users/cmgmyr/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/cmgmyr/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/cmgmyr/subscriptions",
+        "organizations_url": "https://api.github.com/users/cmgmyr/orgs",
+        "repos_url": "https://api.github.com/users/cmgmyr/repos",
+        "events_url": "https://api.github.com/users/cmgmyr/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/cmgmyr/received_events",
+        "type": "User",
+        "site_admin": false
+    },
+    "forks": [],
+    "history": [
+        {
+            "user": {
+                "login": "cmgmyr",
+                "id": 4693481,
+                "avatar_url": "https://avatars.githubusercontent.com/u/4693481?v=3",
+                "gravatar_id": "",
+                "url": "https://api.github.com/users/cmgmyr",
+                "html_url": "https://github.com/cmgmyr",
+                "followers_url": "https://api.github.com/users/cmgmyr/followers",
+                "following_url": "https://api.github.com/users/cmgmyr/following{/other_user}",
+                "gists_url": "https://api.github.com/users/cmgmyr/gists{/gist_id}",
+                "starred_url": "https://api.github.com/users/cmgmyr/starred{/owner}{/repo}",
+                "subscriptions_url": "https://api.github.com/users/cmgmyr/subscriptions",
+                "organizations_url": "https://api.github.com/users/cmgmyr/orgs",
+                "repos_url": "https://api.github.com/users/cmgmyr/repos",
+                "events_url": "https://api.github.com/users/cmgmyr/events{/privacy}",
+                "received_events_url": "https://api.github.com/users/cmgmyr/received_events",
+                "type": "User",
+                "site_admin": false
+            },
+            "version": "19731236c1b84d2d033e5234e9d436d4d03793c0",
+            "committed_at": "2015-05-27T17:54:06Z",
+            "change_status": {
+                "total": 17,
+                "additions": 17,
+                "deletions": 0
+            },
+            "url": "https://api.github.com/gists/d34110daaaeaf12f9fe4/19731236c1b84d2d033e5234e9d436d4d03793c0"
+        }
+    ]
+}
