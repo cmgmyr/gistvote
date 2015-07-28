@@ -1,4 +1,5 @@
 /build
+/files
 /node_modules
 /public/build
 /public/css
