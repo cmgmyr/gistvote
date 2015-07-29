@@ -11,11 +11,31 @@
 |
 */
 
-$factory->define(App\User::class, function ($faker) {
+$factory->define(Gistvote\Users\User::class, function () {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
-        'password' => str_random(10),
+        'name'           => 'Chris Gmyr',
+        'username'       => 'cmgmyr',
+        'email'          => 'cmgmyr@gmail.com',
+        'token'          => str_random(10),
+        'avatar'         => 'https://avatars.githubusercontent.com/u/4693481?v=3',
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(Gistvote\Gists\EloquentGist::class, function () {
+    return [
+        'user_id'        => 1,
+        'file'           => 'testing.md',
+        'file_language'  => 'Markdown',
+        'file_content'   => '# This is a test gist
+
+Does it work?',
+        'description'    => 'Test Gist',
+        'public'         => false,
+        'files'          => 3,
+        'comments'       => 1,
+        'enable_voting'  => true,
+        'has_powered_by' => true,
+        'last_scan'      => \Carbon\Carbon::now(),
     ];
 });
