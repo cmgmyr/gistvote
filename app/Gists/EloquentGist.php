@@ -60,6 +60,6 @@ class EloquentGist extends Model
      */
     public function user()
     {
-        return $this->belongsTo('GistVote\Users\User');
+        return $this->belongsTo('Gistvote\Users\User');
     }
 }

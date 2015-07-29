@@ -38,7 +38,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     public function gists()
     {
-        return $this->hasMany('GistVote\Gists\EloquentGist');
+        return $this->hasMany('Gistvote\Gists\EloquentGist');
     }
 
     /**
