@@ -13,6 +13,7 @@
 
 $factory->define(Gistvote\Users\User::class, function () {
     return [
+        'id'             => 1,
         'name'           => 'Chris Gmyr',
         'username'       => 'cmgmyr',
         'email'          => 'cmgmyr@gmail.com',
@@ -24,18 +25,19 @@ $factory->define(Gistvote\Users\User::class, function () {
 
 $factory->define(Gistvote\Gists\EloquentGist::class, function () {
     return [
+        'id'             => rand(1, 1000),
         'user_id'        => 1,
         'file'           => 'testing.md',
         'file_language'  => 'Markdown',
-        'file_content'   => '# This is a test gist
-
-Does it work?',
+        'file_content'   => '# This is a test gist',
         'description'    => 'Test Gist',
         'public'         => false,
         'files'          => 3,
         'comments'       => 1,
         'enable_voting'  => true,
         'has_powered_by' => true,
+        'created_at'     => \Carbon\Carbon::now(),
+        'updated_at'     => \Carbon\Carbon::now(),
         'last_scan'      => \Carbon\Carbon::now(),
     ];
 });
