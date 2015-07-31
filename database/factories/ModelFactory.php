@@ -29,7 +29,7 @@ $factory->define(Gistvote\Gists\EloquentGist::class, function () {
         'user_id'        => 1,
         'file'           => 'testing.md',
         'file_language'  => 'Markdown',
-        'file_content'   => '# This is a test gist',
+        'file_content'   => "# This is a test gist\n\nDoes it work?",
         'description'    => 'Test Gist',
         'public'         => false,
         'files'          => 3,

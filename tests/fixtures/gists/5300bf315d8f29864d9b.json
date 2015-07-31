@@ -1,0 +1,78 @@
+{
+    "url": "https://api.github.com/gists/5300bf315d8f29864d9b",
+    "forks_url": "https://api.github.com/gists/5300bf315d8f29864d9b/forks",
+    "commits_url": "https://api.github.com/gists/5300bf315d8f29864d9b/commits",
+    "id": "5300bf315d8f29864d9b",
+    "git_pull_url": "https://gist.github.com/5300bf315d8f29864d9b.git",
+    "git_push_url": "https://gist.github.com/5300bf315d8f29864d9b.git",
+    "html_url": "https://gist.github.com/5300bf315d8f29864d9b",
+    "files": {
+        "testing.md": {
+            "filename": "testing.md",
+            "type": "text/plain",
+            "language": "Markdown",
+            "raw_url": "https://gist.githubusercontent.com/cmgmyr/5300bf315d8f29864d9b/raw/2966c4c884deccc1de5992e6479b3d7f08b038e6/testing.md",
+            "size": 36,
+            "truncated": false,
+            "content": "# This is a test gist\n\nDoes it work?"
+        }
+    },
+    "public": false,
+    "created_at": "2015-07-08T01:15:52Z",
+    "updated_at": "2015-07-21T22:51:15Z",
+    "description": "Test Gist",
+    "comments": 2,
+    "user": null,
+    "comments_url": "https://api.github.com/gists/5300bf315d8f29864d9b/comments",
+    "owner": {
+        "login": "cmgmyr",
+        "id": 4693481,
+        "avatar_url": "https://avatars.githubusercontent.com/u/4693481?v=3",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/cmgmyr",
+        "html_url": "https://github.com/cmgmyr",
+        "followers_url": "https://api.github.com/users/cmgmyr/followers",
+        "following_url": "https://api.github.com/users/cmgmyr/following{/other_user}",
+        "gists_url": "https://api.github.com/users/cmgmyr/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/cmgmyr/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/cmgmyr/subscriptions",
+        "organizations_url": "https://api.github.com/users/cmgmyr/orgs",
+        "repos_url": "https://api.github.com/users/cmgmyr/repos",
+        "events_url": "https://api.github.com/users/cmgmyr/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/cmgmyr/received_events",
+        "type": "User",
+        "site_admin": false
+    },
+    "forks": [],
+    "history": [
+        {
+            "user": {
+                "login": "cmgmyr",
+                "id": 4693481,
+                "avatar_url": "https://avatars.githubusercontent.com/u/4693481?v=3",
+                "gravatar_id": "",
+                "url": "https://api.github.com/users/cmgmyr",
+                "html_url": "https://github.com/cmgmyr",
+                "followers_url": "https://api.github.com/users/cmgmyr/followers",
+                "following_url": "https://api.github.com/users/cmgmyr/following{/other_user}",
+                "gists_url": "https://api.github.com/users/cmgmyr/gists{/gist_id}",
+                "starred_url": "https://api.github.com/users/cmgmyr/starred{/owner}{/repo}",
+                "subscriptions_url": "https://api.github.com/users/cmgmyr/subscriptions",
+                "organizations_url": "https://api.github.com/users/cmgmyr/orgs",
+                "repos_url": "https://api.github.com/users/cmgmyr/repos",
+                "events_url": "https://api.github.com/users/cmgmyr/events{/privacy}",
+                "received_events_url": "https://api.github.com/users/cmgmyr/received_events",
+                "type": "User",
+                "site_admin": false
+            },
+            "version": "b1de691f5ae8990416741da53743dc849fa507dd",
+            "committed_at": "2015-07-08T01:15:52Z",
+            "change_status": {
+                "total": 3,
+                "additions": 3,
+                "deletions": 0
+            },
+            "url": "https://api.github.com/gists/5300bf315d8f29864d9b/b1de691f5ae8990416741da53743dc849fa507dd"
+        }
+    ]
+}
