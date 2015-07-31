@@ -37,7 +37,7 @@ class GistTest extends TestCase
     /** @test */
     public function it_should_return_first_file_gh()
     {
-        list($eloquentGist, $githubGist) = $this->buildGithubGist(['id' => 2, 'email' => 'chris@gist.vote'], ['id' => '5300bf315d8f29864d9b2', 'user_id' => 2]);
+        list($eloquentGist, $githubGist) = $this->buildGithubGist();
         $gistFromGithub = Gist::fromGitHub($eloquentGist, $githubGist);
 
         $this->assertInstanceOf(GistFile::class, $gistFromGithub->firstFile());
