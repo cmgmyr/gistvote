@@ -25,7 +25,7 @@ $factory->define(Gistvote\Users\User::class, function () {
 
 $factory->define(Gistvote\Gists\EloquentGist::class, function () {
     return [
-        'id'             => rand(1, 1000),
+        'id'             => '5300bf315d8f29864d9b',
         'user_id'        => 1,
         'file'           => 'testing.md',
         'file_language'  => 'Markdown',
