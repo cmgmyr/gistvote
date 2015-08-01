@@ -43,6 +43,25 @@ class GistTest extends TestCase
         $this->assertInstanceOf(GistFile::class, $gistFromGithub->firstFile());
     }
 
+    /** @test */
+    public function it_should_return_correct_gist_visibility_eloquent()
+    {
+        $gistFromEloquent = Gist::fromEloquent($this->buildEloquentGist());
+
+        $this->assertFalse($gistFromEloquent->isPublic());
+        $this->assertTrue($gistFromEloquent->isSecret());
+    }
+
+    /** @test */
+    public function it_should_return_correct_gist_visibility_gh()
+    {
+        list($eloquentGist, $githubGist) = $this->buildGithubGist();
+        $gistFromGithub = Gist::fromGitHub($eloquentGist, $githubGist);
+
+        $this->assertFalse($gistFromGithub->isPublic());
+        $this->assertTrue($gistFromGithub->isSecret());
+    }
+
     /**
      * Builds an eloquent gist for testing
      *
