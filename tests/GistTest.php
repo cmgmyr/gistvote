@@ -62,6 +62,25 @@ class GistTest extends TestCase
         $this->assertTrue($gistFromGithub->isSecret());
     }
 
+    /** @test */
+    public function it_should_return_correct_gist_voting_availability_eloquent()
+    {
+        $gistFromEloquent = Gist::fromEloquent($this->buildEloquentGist());
+
+        $this->assertFalse($gistFromEloquent->isNotVoting());
+        $this->assertTrue($gistFromEloquent->isVoting());
+    }
+
+    /** @test */
+    public function it_should_return_correct_gist_voting_availability_gh()
+    {
+        list($eloquentGist, $githubGist) = $this->buildGithubGist();
+        $gistFromGithub = Gist::fromGitHub($eloquentGist, $githubGist);
+
+        $this->assertFalse($gistFromGithub->isNotVoting());
+        $this->assertTrue($gistFromGithub->isVoting());
+    }
+
     /**
      * Builds an eloquent gist for testing
      *
