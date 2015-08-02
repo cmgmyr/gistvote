@@ -98,6 +98,26 @@ class GistTest extends TestCase
         $this->assertEquals('http://localhost/cmgmyr/5300bf315d8f29864d9b', $gistFromGithub->url());
     }
 
+    /** @test */
+    public function it_should_return_correct_votes_eloquent()
+    {
+        $gistFromEloquent = Gist::fromEloquent($this->buildEloquentGist());
+
+        // gists via eloquent don't track votes at this time
+        $this->assertCount(0, $gistFromEloquent->getPositiveVotes());
+        $this->assertCount(0, $gistFromEloquent->getNegativeVotes());
+    }
+
+    /** @test */
+    public function it_should_return_correct_votes_gh()
+    {
+        list($eloquentGist, $githubGist) = $this->buildGithubGist();
+        $gistFromGithub = Gist::fromGitHub($eloquentGist, $githubGist);
+
+        $this->assertCount(0, $gistFromGithub->getPositiveVotes());
+        $this->assertCount(1, $gistFromGithub->getNegativeVotes());
+    }
+
     /**
      * Builds an eloquent gist for testing
      *
