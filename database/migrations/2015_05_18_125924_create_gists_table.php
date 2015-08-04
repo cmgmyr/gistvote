@@ -15,13 +15,13 @@ class CreateGistsTable extends Migration
         Schema::create('gists', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->integer('user_id');
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->text('description')->nullable();
-            $table->boolean('public');
-            $table->integer('files');
-            $table->integer('comments');
-            $table->timestamps();
-            $table->dateTime('last_scan');
+            $table->boolean('public')->default(false);
+            $table->integer('files')->default(0);
+            $table->integer('comments')->default(0);
+            $table->nullableTimestamps();
+            $table->dateTime('last_scan')->nullable();
         });
     }
 
