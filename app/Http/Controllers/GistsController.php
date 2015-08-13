@@ -35,7 +35,7 @@ class GistsController extends Controller
      */
     public function __construct(Auth $auth, GistRepository $repository)
     {
-        $this->middleware('auth', ['except' => 'index']);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
 
         $this->auth = $auth;
         $this->repository = $repository;

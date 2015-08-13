@@ -59,27 +59,35 @@
                 @endforeach
             @endif
 
-            <article class="media comment">
-                <div class="media-left">
-                    <a href="{{ $currentUser->profile() }}" target="_blank">
-                        <img class="media-object avatar img-circle" src="{{ $currentUser->avatar() }}" alt="{{ $currentUser->username() }}">
-                    </a>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading"><a href="{{ $currentUser->profile() }}" target="_blank">{{ $currentUser->username() }}</a> <small class="pull-right">Use +1 or -1 in your comment to leave a vote.</small></h4>
-                    {!! Form::open(['route' => ['gists.store', $gist->owner, $gist->id], 'method' => 'post']) !!}
-                    <!-- Comment Form Input -->
-                    <div class="form-group">
-                        {!! Form::textarea('comment', null, ['class' => 'form-control']) !!}
+            @if($currentUser)
+                <article class="media comment">
+                    <div class="media-left">
+                        <a href="{{ $currentUser->profile() }}" target="_blank">
+                            <img class="media-object avatar img-circle" src="{{ $currentUser->avatar() }}" alt="{{ $currentUser->username() }}">
+                        </a>
                     </div>
+                    <div class="media-body">
+                        <h4 class="media-heading"><a href="{{ $currentUser->profile() }}" target="_blank">{{ $currentUser->username() }}</a> <small class="pull-right">Use +1 or -1 in your comment to leave a vote.</small></h4>
+                        {!! Form::open(['route' => ['gists.store', $gist->owner, $gist->id], 'method' => 'post']) !!}
+                        <!-- Comment Form Input -->
+                        <div class="form-group">
+                            {!! Form::textarea('comment', null, ['class' => 'form-control']) !!}
+                        </div>
 
-                    <!-- Submit Form Input -->
-                    <div class="form-group">
-                        {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
+                        <!-- Submit Form Input -->
+                        <div class="form-group">
+                            {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
+                        </div>
+                        {!! Form::close() !!}
                     </div>
-                    {!! Form::close() !!}
-                </div>
-            </article>
+                </article>
+            @else
+                <article class="media comment">
+                    <div class="media-body">
+                        <p><a href="{{ route('login') }}"><i class="fa fa-github"></i> Login with GitHub to comment/vote.</a></p>
+                    </div>
+                </article>
+            @endif
         </div>
     </div>
 @stop
