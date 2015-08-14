@@ -46,7 +46,7 @@
             @else
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{{ route('login') }}"><i class="fa fa-github"></i> Login with GitHub</a></li>
+                        <li><a href="{{ route('login') }}"><i class="fa fa-github"></i> Log in with GitHub</a></li>
                     </ul>
                 </div>
             @endif
