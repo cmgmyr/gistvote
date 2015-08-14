@@ -62,8 +62,11 @@
     </div>
 
     <footer class="footer">
-        <div class="container">
-            <p class="text-muted">Copyright &copy; <a href="https://github.com/cmgmyr" target="_blank">Chris Gmyr</a></p>
+        <div class="container text-muted">
+            <ul class="list-inline">
+                <li>Copyright &copy; <a href="https://github.com/cmgmyr" target="_blank">Chris Gmyr</a></li>
+                <li class="pull-right"><a href="https://github.com/cmgmyr/gistvote" target="_blank"><i class="fa fa-github"></i> Report a bug, make a suggestion, or contribute</a></li>
+            </ul>
         </div>
     </footer>
 
