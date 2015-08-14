@@ -3,8 +3,8 @@
 @section('content')
     <div class="jumbotron">
         <h1>GistVote</h1>
-        <p class="lead">Ever have a great idea you wanted to share with others? GistVote makes it simple for you to share and tally your voter's responses. For free!</p>
-        <p><a class="btn btn-lg btn-success" href="{{ route('login') }}" role="button"><i class="fa fa-github"></i> Login with GitHub</a></p>
+        <p class="lead">Ever have a great idea you wanted to share with others? GistVote makes it simple for you to share and tally your voters' responses. For free!</p>
+        <p><a class="btn btn-lg btn-success" href="{{ route('login') }}" role="button"><i class="fa fa-github"></i> Get Started With GitHub</a></p>
     </div>
 
     <div class="row">
