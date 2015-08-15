@@ -19,8 +19,8 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primary-nav-collapse">
-                    <span class="u-sr-only">Toggle Navigation</span>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -29,7 +29,7 @@
             </div>
 
             @if($currentUser)
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" name="user-dropdown">
@@ -44,9 +44,11 @@
                     </ul>
                 </div>
             @else
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{{ route('login') }}"><i class="fa fa-github"></i> Log in with GitHub</a></li>
+                        <li class="dropdown">
+                            <a href="{{ route('login') }}"><i class="fa fa-github"></i> Log in with GitHub</a>
+                        </li>
                     </ul>
                 </div>
             @endif
