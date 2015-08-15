@@ -37,7 +37,7 @@ class AuthController extends Controller implements AuthenticateUserListener, UnA
      */
     public function userHasLoggedIn($user)
     {
-        return redirect('/');
+        return redirect()->route('gists.refresh');
     }
 
     /**
