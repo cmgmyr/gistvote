@@ -12,6 +12,7 @@
         <div class="col-lg-4">
             <h2>Easy to Use</h2>
             <p>You already have a GitHub account, why not make your gists more powerful?</p>
+            <img src="/img/turn-on.gif" alt="enable voting">
         </div>
         <div class="col-lg-4">
             <h2>Get Your Idea Across</h2>
