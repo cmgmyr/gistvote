@@ -1,6 +1,7 @@
 <?php namespace Gistvote\Gists;
 
 use Carbon\Carbon;
+use Exception;
 use Gistvote\Events\GistWasActivated;
 use Gistvote\Services\GitHub;
 use Illuminate\Support\Facades\Event;
@@ -41,7 +42,9 @@ class GistRepository
         // @todo: fix this file stuff, it's bad
         $gist->file = array_keys($gistData['files'])[0];
         $gist->file_language = $gistData['files'][$gist->file]['language'];
-        $gist->file_content = file_get_contents($gistData['files'][$gist->file]['raw_url']);
+
+        // handle file content
+        $gist = $this->getGistFileContent($gist, $gistData['files'][$gist->file]['raw_url']);
 
         $gist->description = $gistData['description'];
         $gist->public = $gistData['public'];
@@ -116,7 +119,9 @@ class GistRepository
             // @todo: fix this file stuff, it's bad
             $gist->file = array_keys($gitHubGist['gist']['files'])[0];
             $gist->file_language = $gitHubGist['gist']['files'][$gist->file]['language'];
-            $gist->file_content = file_get_contents($gitHubGist['gist']['files'][$gist->file]['raw_url']);
+
+            // handle file content
+            $gist = $this->getGistFileContent($gist, $gitHubGist['gist']['files'][$gist->file]['raw_url']);
 
             $gist->description = $gitHubGist['gist']['description'];
             $gist->public = $gitHubGist['gist']['public'];
@@ -149,5 +154,28 @@ class GistRepository
     public function removeDeletableGistsByUser($userId)
     {
         EloquentGist::where('user_id', $userId)->where('should_delete', true)->delete();
+    }
+
+    /**
+     * Handles any exceptions when we can't get the gist contents (when GH is down)
+     *
+     * @param EloquentGist $gist
+     * @param $fileUrl
+     * @return mixed
+     */
+    protected function getGistFileContent(EloquentGist $gist, $fileUrl)
+    {
+        try {
+            $gist->file_content = file_get_contents($fileUrl);
+        } catch (Exception $e) {
+            $gist->file_language = 'Markdown';
+            $gist->file_content = <<<CONTENT
+# :rage: We're sorry, there was an error
+
+Looks like something is wrong retrieving the file from GitHub. Please check back soon
+CONTENT;
+        }
+
+        return $gist;
     }
 }
