@@ -50,6 +50,7 @@ class GistRepository
         $gist->created_at = Carbon::parse($gistData['created_at']);
         $gist->updated_at = Carbon::parse($gistData['updated_at']);
         $gist->last_scan = Carbon::now();
+        $gist->should_delete = false;
 
         $gist->save();
 
@@ -124,8 +125,29 @@ class GistRepository
             $gist->created_at = Carbon::parse($gitHubGist['gist']['created_at']);
             $gist->updated_at = Carbon::parse($gitHubGist['gist']['updated_at']);
             $gist->last_scan = Carbon::now();
+            $gist->should_delete = false;
 
             $gist->save();
         }
+    }
+
+    /**
+     * Set all gists for a user to be (possibly) deleted in the future
+     *
+     * @param $userId
+     */
+    public function setAllGistsToBeDeletedByUser($userId)
+    {
+        EloquentGist::where('user_id', $userId)->update(['should_delete' => true]);
+    }
+
+    /**
+     * Delete gists by a user that are still set to be deleted
+     *
+     * @param $userId
+     */
+    public function removeDeletableGistsByUser($userId)
+    {
+        EloquentGist::where('user_id', $userId)->where('should_delete', true)->delete();
     }
 }

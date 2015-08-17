@@ -69,9 +69,13 @@ class GistsController extends Controller
     {
         $gists = $this->github->gists();
 
+        $this->repository->setAllGistsToBeDeletedByUser($this->auth->id());
+
         foreach ($gists as $gist) {
             $this->repository->findByIdOrCreate($gist, $this->auth->id());
         }
+
+        $this->repository->removeDeletableGistsByUser($this->auth->id());
 
         return redirect('/');
     }
