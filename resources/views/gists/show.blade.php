@@ -2,7 +2,10 @@
 
 @section('content')
     <h1>{{ $gist->firstFile()->name }}</h1>
-    <p>{{ $gist->description }}</p>
+    <div class="row">
+        <div class="col-md-9">{{ $gist->description }}</div>
+        <div class="col-md-3 text-right"><a href="{{ $gist->gitHubUrl() }}" target="_blank" class="btn btn-default"><i class="fa fa-external-link"></i> View on GitHub</a></div>
+    </div>
 
     <div class="row">
         <div class="col-xs-12 col-md-3 vote_tallies">

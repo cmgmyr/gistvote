@@ -210,6 +210,11 @@ class Gist
         return route('gists.show', [$this->owner, $this->id]);
     }
 
+    public function gitHubUrl()
+    {
+        return 'https://gist.github.com/' . $this->owner . '/' . $this->id;
+    }
+
     /**
      * Adds a new negative voter
      *
