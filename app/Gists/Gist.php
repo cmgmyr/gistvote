@@ -270,4 +270,14 @@ class Gist
     {
         return $this->voters['negative'];
     }
+
+    /**
+     * Returns the total vote count for the gist
+     *
+     * @return mixed
+     */
+    public function voteCount()
+    {
+        return $this->getPositiveVotes()->count() + $this->getNegativeVotes()->count();
+    }
 }
