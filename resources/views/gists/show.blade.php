@@ -52,46 +52,45 @@
 
             @if($gist->commentCount > 0)
                 @foreach($gist->comments as $comment)
-                    <article class="media comment">
-                        <div class="media-left">
-                            <a href="{{ $comment->profile() }}" target="_blank">
-                                <img class="media-object avatar img-circle" src="{{ $comment->avatar() }}" alt="{{ $comment->username() }}">
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading"><a href="{{ $comment->profile() }}" target="_blank">{{ $comment->username() }}</a></h4>
-                            {!! $comment->renderHtml() !!}
-                        </div>
-                    </article>
+                    @include('gists.partials.comment', ['comment' => $comment])
                 @endforeach
             @endif
 
             @if($currentUser)
-                <article class="media comment">
-                    <div class="media-left">
-                        <a href="{{ $currentUser->profile() }}" target="_blank">
-                            <img class="media-object avatar img-circle" src="{{ $currentUser->avatar() }}" alt="{{ $currentUser->username() }}">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading"><a href="{{ $currentUser->profile() }}" target="_blank">{{ $currentUser->username() }}</a> <small class="pull-right">Use +1 or -1 in your comment to leave a vote.</small></h4>
-                        {!! Form::open(['route' => ['gists.store', $gist->owner, $gist->id], 'method' => 'post']) !!}
-                        <!-- Comment Form Input -->
-                        <div class="form-group">
-                            {!! Form::textarea('comment', null, ['class' => 'form-control']) !!}
-                        </div>
+                    <div class="row comment">
+                        <div class="col-sm-1">
+                            <div class="thumbnail">
+                                <a href="{{ $currentUser->profile() }}" target="_blank">
+                                    <img class="img-responsive user-photo" src="{{ $currentUser->avatar() }}">
+                                </a>
+                            </div><!-- /thumbnail -->
+                        </div><!-- /col-sm-1 -->
 
-                        <!-- Submit Form Input -->
-                        <div class="form-group">
-                            {!! Form::submit('Submit', ['class' => 'btn btn-primary form-control']) !!}
-                        </div>
-                        {!! Form::close() !!}
+                        <div class="col-sm-10">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <strong><a href="{{ $currentUser->profile() }}" target="_blank">{{ $comment->username() }}</a></strong> <small class="pull-right">Use +1 or -1 in your comment to leave a vote.</small>
+                                </div>
+                                <div class="panel-body">
+                                    {!! Form::open(['route' => ['gists.store', $gist->owner, $gist->id], 'method' => 'post']) !!}
+                                    <!-- Comment Form Input -->
+                                    <div class="form-group">
+                                        {!! Form::textarea('comment', null, ['class' => 'form-control']) !!}
+                                    </div>
+
+                                    <!-- Submit Form Input -->
+                                    <div class="">
+                                        {!! Form::submit('Comment', ['class' => 'btn btn-success pull-right']) !!}
+                                    </div>
+                                    {!! Form::close() !!}
+                                </div><!-- /panel-body -->
+                            </div><!-- /panel panel-default -->
+                        </div><!-- /col-sm-5 -->
                     </div>
-                </article>
             @else
-                <article class="media comment">
+                <article class="media">
                     <div class="media-body">
-                        <p><a href="{{ route('login') }}"><i class="fa fa-github"></i> Login with GitHub to comment/vote.</a></p>
+                        <p><a href="{{ route('login') }}" class="btn btn-lg btn-success"><i class="fa fa-github"></i> Log In to Comment and Vote.</a></p>
                     </div>
                 </article>
             @endif
