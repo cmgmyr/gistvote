@@ -142,6 +142,7 @@ return [
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -204,6 +205,7 @@ return [
         'Socialize' => Laravel\Socialite\Facades\Socialite::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
+        'Bugsnag'   => Bugsnag\BugsnagLaravel\BugsnagFacade::class,
 
         'Parser'    => Gistvote\Parser\ParserFacade::class,
         'Flash'     => Gistvote\Services\Notifications\Flash::class,
