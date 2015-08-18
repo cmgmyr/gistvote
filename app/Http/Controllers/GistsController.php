@@ -1,5 +1,6 @@
 <?php namespace Gistvote\Http\Controllers;
 
+use Exception;
 use Gistvote\Gists\GistRepository;
 use Gistvote\Services\GitHub;
 use Gistvote\Services\Notifications\Flash;
@@ -89,7 +90,12 @@ class GistsController extends Controller
      */
     public function show($username, $id)
     {
-        $gist = $this->repository->findById($id);
+        try {
+            $gist = $this->repository->findById($id);
+        } catch (Exception $e) {
+            Flash::error($this->gistNotFoundMessage);
+            return redirect('/');
+        }
 
         if ($username != $gist->owner || $gist->isNotVoting()) {
             Flash::error($this->gistNotFoundMessage);
