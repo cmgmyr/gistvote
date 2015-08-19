@@ -13,8 +13,6 @@
         "laravel/framework": "5.1.*",
         "laravel/socialite": "~2.0",
         "knplabs/github-api": "~1.4.13",
-        "michelf/php-markdown": "~1.4",
-        "emojione/emojione": "dev-master",
         "laravelcollective/html": "~5.0",
         "bugsnag/bugsnag-laravel": "1.*"
     },
