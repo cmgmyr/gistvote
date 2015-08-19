@@ -1,6 +1,6 @@
 <?php namespace Gistvote\Gists;
 
-use Gistvote\Parser\ParserFacade as Parser;
+use Gistvote\Services\GitHub;
 use Illuminate\Support\Facades\Config;
 
 class GistFile
@@ -21,12 +21,19 @@ class GistFile
     public $content;
 
     /**
+     * @var Gist
+     */
+    private $gist;
+
+    /**
+     * @param Gist $gist
      * @param $name
      * @param $language
      * @param $content
      */
-    public function __construct($name, $language, $content)
+    public function __construct(Gist $gist, $name, $language, $content)
     {
+        $this->gist = $gist;
         $this->name = $name;
         $this->language = $language;
         $this->content = htmlentities($content);
@@ -97,7 +104,8 @@ class GistFile
         $language = $this->syntaxLanguage();
 
         if ($language == 'markdown') {
-            return '<div class="markdown">' . Parser::transform($content) . '</div>';
+            $markdown = (new GitHub($this->gist->user))->parseMarkdown($content);
+            return '<div class="markdown">' . $markdown . '</div>';
         }
 
         return '<pre><code class="language-' . $language . ' line-numbers">' . $content . '</code></pre>';

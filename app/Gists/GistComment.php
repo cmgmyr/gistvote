@@ -1,7 +1,7 @@
 <?php namespace Gistvote\Gists;
 
 use Carbon\Carbon;
-use Gistvote\Parser\ParserFacade as Parser;
+use Gistvote\Services\GitHub;
 use Gistvote\Users\GitHubUser;
 use Gistvote\Voters\Voter;
 
@@ -100,7 +100,7 @@ class GistComment implements GitHubUser
      */
     public function renderHtml()
     {
-        return Parser::transform($this->body);
+        return (new GitHub($this->gist->user))->parseMarkdown($this->body);
     }
 
     /**

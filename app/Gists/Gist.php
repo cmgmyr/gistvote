@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use Gistvote\Voters\Voter;
+use Illuminate\Support\Facades\Auth;
 
 class Gist
 {
@@ -70,6 +71,11 @@ class Gist
      */
     private $voters;
 
+    /**
+     * @var GitHubUser
+     */
+    public $user;
+
     public function __construct()
     {
         $this->voters = [
@@ -97,7 +103,7 @@ class Gist
         $gist->commentCount = $eloquentGist->comments;
 
         $gist->files = collect([
-            new GistFile($eloquentGist->file, $eloquentGist->file_language, $eloquentGist->file_content)
+            new GistFile($gist, $eloquentGist->file, $eloquentGist->file_language, $eloquentGist->file_content)
         ]);
         $gist->fileCount = $eloquentGist->files;
 
@@ -105,6 +111,8 @@ class Gist
         $gist->updated_at = $eloquentGist->updated_at;
         $gist->last_scan = $eloquentGist->last_scan;
         $gist->owner = $eloquentGist->user->username;
+
+        $gist->setUserEntity($eloquentGist);
 
         return $gist;
     }
@@ -137,7 +145,7 @@ class Gist
         $files = [];
         if (is_array($gitHubGist['gist']['files'])) {
             foreach ($gitHubGist['gist']['files'] as $file) {
-                $files[] = new GistFile($file['filename'], $file['language'], $file['content']);
+                $files[] = new GistFile($gist, $file['filename'], $file['language'], $file['content']);
             }
         }
         $gist->files = collect($files);
@@ -146,6 +154,8 @@ class Gist
         $gist->created_at = Carbon::parse($gitHubGist['gist']['created_at']);
         $gist->updated_at = Carbon::parse($gitHubGist['gist']['updated_at']);
         $gist->owner = $gitHubGist['gist']['owner']['login'];
+
+        $gist->setUserEntity($eloquentGist);
 
         return $gist;
     }
@@ -210,6 +220,11 @@ class Gist
         return route('gists.show', [$this->owner, $this->id]);
     }
 
+    /**
+     * Returns the url for the original gist on GitHub
+     *
+     * @return string
+     */
     public function gitHubUrl()
     {
         return 'https://gist.github.com/' . $this->owner . '/' . $this->id;
@@ -279,5 +294,15 @@ class Gist
     public function voteCount()
     {
         return $this->getPositiveVotes()->count() + $this->getNegativeVotes()->count();
+    }
+
+    /**
+     * Figures out which user to use when authenticating to GitHub
+     *
+     * @param EloquentGist $eloquentGist
+     */
+    public function setUserEntity(EloquentGist $eloquentGist)
+    {
+        $this->user = Auth::check() ? Auth::user() : $eloquentGist->user();
     }
 }
