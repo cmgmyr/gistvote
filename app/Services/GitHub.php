@@ -2,6 +2,7 @@
 
 use Gistvote\Users\User;
 use Github\Client as GitHubClient;
+use Github\HttpClient\Message\ResponseMediator;
 
 class GitHub
 {
@@ -72,5 +73,22 @@ class GitHub
     public function gistComment($id, $comment)
     {
         $this->client->api('gist')->comments()->create($id, $comment);
+    }
+
+    /**
+     * Parses markdown via GitHub
+     *
+     * @param $markdown
+     * @return \Guzzle\Http\EntityBodyInterface|mixed|string
+     */
+    public function parseMarkdown($markdown)
+    {
+        $body = json_encode([
+            'text' => $markdown
+        ]);
+
+        $response = $this->client->getHttpClient()->post('markdown', $body);
+
+        return ResponseMediator::getContent($response);
     }
 }
