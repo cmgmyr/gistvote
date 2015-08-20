@@ -33,10 +33,9 @@ class GitHub
     private function authenticate()
     {
         try {
-            $this->client->authenticate($this->user->token, $this->user->token, GitHubClient::AUTH_HTTP_TOKEN);
+            $this->client->authenticate($this->user->token, GitHubClient::AUTH_HTTP_TOKEN);
         } catch (\Exception $e) {
-            // @todo: handle this better...
-            die($e->getMessage());
+            \Bugsnag::notifyError("Exception", 'GitHub Authentication failed: ' . $e->getMessage());
         }
     }
 
