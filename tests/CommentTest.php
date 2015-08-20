@@ -32,20 +32,6 @@ class CommentTest extends TestCase
     }
 
     /** @test */
-    public function it_should_render_comment_html()
-    {
-        $gist = m::mock(Gist::class);
-
-        $githubComment = $this->loadFixture('5300bf315d8f29864d9b/comments.json')[0];
-
-        $comment = new GistComment($githubComment, $gist);
-
-        $body = '<p>This gist has vote tracking powered by <a href="http://gistvote.dev/cmgmyr/5300bf315d8f29864d9b">Gist.vote</a></p>
-';
-        $this->assertEquals($body, $comment->renderHtml());
-    }
-
-    /** @test */
     public function it_should_parse_positive_vote()
     {
         $gist = m::mock(Gist::class);
