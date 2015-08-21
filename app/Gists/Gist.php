@@ -303,6 +303,6 @@ class Gist
      */
     public function setUserEntity(EloquentGist $eloquentGist)
     {
-        $this->user = Auth::check() ? Auth::user() : $eloquentGist->user();
+        $this->user = Auth::check() ? Auth::user() : $eloquentGist->user;
     }
 }
