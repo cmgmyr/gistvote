@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GistVote - Turn Your Gists Into a Voting Platform</title>
+    @yield('meta')
 
     <link rel="stylesheet" href="{{ elixir("css/app.css") }}">
 
