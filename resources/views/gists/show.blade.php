@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('meta')
+    @if($gist->isSecret())
+        <meta name="robots" content="noindex, nofollow">
+    @endif
+@stop
+
 @section('content')
     <h1>{{ $gist->firstFile()->name }}</h1>
     <div class="row">
