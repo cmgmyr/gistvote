@@ -75,7 +75,7 @@
                         <div class="col-sm-10">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <strong><a href="{{ $currentUser->profile() }}" target="_blank">{{ $comment->username() }}</a></strong> <small class="pull-right">Use +1 or -1 in your comment to leave a vote.</small>
+                                    <strong><a href="{{ $currentUser->profile() }}" target="_blank">{{ $currentUser->username() }}</a></strong> <small class="pull-right">Use +1 or -1 in your comment to leave a vote.</small>
                                 </div>
                                 <div class="panel-body">
                                     {!! Form::open(['route' => ['gists.store', $gist->owner, $gist->id], 'method' => 'post']) !!}
