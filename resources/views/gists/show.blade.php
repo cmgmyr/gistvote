@@ -75,19 +75,26 @@
                         <div class="col-sm-10">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <strong><a href="{{ $currentUser->profile() }}" target="_blank">{{ $currentUser->username() }}</a></strong> <small class="pull-right">Use +1 or -1 in your comment to leave a vote.</small>
+                                    <strong><a href="{{ $currentUser->profile() }}" target="_blank">{{ $currentUser->username() }}</a></strong>
                                 </div>
                                 <div class="panel-body">
-                                    {!! Form::open(['route' => ['gists.store', $gist->owner, $gist->id], 'method' => 'post']) !!}
-                                    <!-- Comment Form Input -->
-                                    <div class="form-group">
-                                        {!! Form::textarea('comment', null, ['class' => 'form-control']) !!}
-                                    </div>
+                                    {!! Form::open(['route' => ['gists.store', $gist->owner, $gist->id], 'method' => 'post', 'id' => 'comment-form']) !!}
 
-                                    <!-- Submit Form Input -->
-                                    <div class="">
-                                        {!! Form::submit('Comment', ['class' => 'btn btn-success pull-right']) !!}
-                                    </div>
+                                        <!-- Comment Form Input -->
+                                        <div class="form-group">
+                                            {!! Form::textarea('comment', null, ['id' => 'comment-box', 'class' => 'form-control', 'placeholder' => 'Leave a comment']) !!}
+                                        </div>
+
+                                        <!-- Submit Form Input -->
+                                        <div class="comment-form-submit">
+                                            <!-- Vote Helper Buttons -->
+                                            <div id="vote-buttons">
+                                                <a href="#" class="btn btn-success" title="+1" data-vote="+"><img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" alt="+1"></a>
+                                                <a href="#" class="btn btn-danger" title="-1" data-vote="-"><img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44e.png" alt="-1"></a>
+                                            </div>
+
+                                            {!! Form::submit('Comment', ['class' => 'btn btn-default']) !!}
+                                        </div>
                                     {!! Form::close() !!}
                                 </div><!-- /panel-body -->
                             </div><!-- /panel panel-default -->
