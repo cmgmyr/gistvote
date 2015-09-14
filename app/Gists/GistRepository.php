@@ -18,11 +18,21 @@ class GistRepository
     {
         $gists = EloquentGist::where('user_id', $userId)->latest()->get();
 
-        $gistCollection = collect($gists)->map(function ($gist) {
-            return Gist::fromEloquent($gist);
-        });
+        return $this->createGistCollection($gists);
+    }
 
-        return $gistCollection;
+    /**
+     * Paginates all gists created by the user
+     *
+     * @param $userId
+     * @param $limit
+     * @return array
+     */
+    public function paginateAll($userId, $limit)
+    {
+        $gists = EloquentGist::where('user_id', $userId)->latest()->paginate($limit);
+
+        return [$this->createGistCollection($gists->items()), $gists->render()];
     }
 
     /**
@@ -177,5 +187,18 @@ CONTENT;
         }
 
         return $gist;
+    }
+
+    /**
+     * Returns a collection of correctly formed gist objects
+     *
+     * @param $gists
+     * @return Collection
+     */
+    protected function createGistCollection($gists)
+    {
+        return collect($gists)->map(function ($gist) {
+            return Gist::fromEloquent($gist);
+        });
     }
 }

@@ -56,9 +56,9 @@ class GistsController extends Controller
             return view('welcome');
         }
 
-        $gists = $this->repository->all($this->auth->id());
+        list($gists, $pagination) = $this->repository->paginateAll($this->auth->id(), 10);
 
-        return view('gists.index')->with('gists', $gists);
+        return view('gists.index')->with('gists', $gists)->with('pagination', $pagination);
     }
 
     /**

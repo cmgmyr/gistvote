@@ -10,4 +10,6 @@
         @endforeach
         </ul>
     @endif
+
+    {!! $pagination !!}
 @stop
