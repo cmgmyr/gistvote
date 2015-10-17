@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Gists;
+<?php
+
+namespace Gistvote\Gists;
 
 use Gistvote\Services\GitHub;
 use Illuminate\Support\Facades\Config;
@@ -40,7 +42,7 @@ class GistFile
     }
 
     /**
-     * Returns a snippet of the content by the number of given lines
+     * Returns a snippet of the content by the number of given lines.
      *
      * @param int $lines
      * @return string
@@ -58,7 +60,7 @@ class GistFile
     }
 
     /**
-     * Returns the syntax language for highlighting
+     * Returns the syntax language for highlighting.
      *
      * @return string
      */
@@ -74,7 +76,7 @@ class GistFile
     }
 
     /**
-     * Renders an HTML version of the file's snippet
+     * Renders an HTML version of the file's snippet.
      *
      * @return string
      */
@@ -84,7 +86,7 @@ class GistFile
     }
 
     /**
-     * Renders an HTML version of the file's content
+     * Renders an HTML version of the file's content.
      *
      * @return string
      */
@@ -94,7 +96,7 @@ class GistFile
     }
 
     /**
-     * Renders the correctly formatted HTML for the file
+     * Renders the correctly formatted HTML for the file.
      *
      * @param $content
      * @return string
@@ -105,6 +107,7 @@ class GistFile
 
         if ($language == 'markdown') {
             $markdown = (new GitHub($this->gist->user))->parseMarkdown($content);
+
             return '<div class="markdown">' . $markdown . '</div>';
         }
 

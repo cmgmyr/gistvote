@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Http\Middleware;
+<?php
+
+namespace Gistvote\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
 

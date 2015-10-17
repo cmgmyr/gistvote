@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Gists;
+<?php
+
+namespace Gistvote\Gists;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -43,7 +45,7 @@ class EloquentGist extends Model
         'enable_voting',
         'created_at',
         'updated_at',
-        'last_scan'
+        'last_scan',
     ];
 
     /**
@@ -54,7 +56,7 @@ class EloquentGist extends Model
     protected $dates = ['created_at', 'updated_at', 'last_scan'];
 
     /**
-     * Gist belongs to a user
+     * Gist belongs to a user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

@@ -65,5 +65,5 @@ return [
     'twig',
     'typescript',
     'wiki',
-    'yaml'
+    'yaml',
 ];

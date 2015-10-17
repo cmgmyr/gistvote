@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Voters;
+<?php
+
+namespace Gistvote\Voters;
 
 use Gistvote\Users\GitHubUser;
 
@@ -21,7 +23,7 @@ class Voter implements GitHubUser
     }
 
     /**
-     * Returns the username for the user
+     * Returns the username for the user.
      *
      * @return string
      */
@@ -31,7 +33,7 @@ class Voter implements GitHubUser
     }
 
     /**
-     * Returns the profile url for the user
+     * Returns the profile url for the user.
      *
      * @return string
      */
@@ -41,7 +43,7 @@ class Voter implements GitHubUser
     }
 
     /**
-     * Returns the avatar url for the user
+     * Returns the avatar url for the user.
      *
      * @return string
      */

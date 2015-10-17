@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Gists;
+<?php
+
+namespace Gistvote\Gists;
 
 use Carbon\Carbon;
 use Exception;
@@ -9,7 +11,7 @@ use Illuminate\Support\Facades\Event;
 class GistRepository
 {
     /**
-     * Gets all gists created by the user
+     * Gets all gists created by the user.
      *
      * @param int $userId
      * @return Collection
@@ -22,7 +24,7 @@ class GistRepository
     }
 
     /**
-     * Paginates all gists created by the user
+     * Paginates all gists created by the user.
      *
      * @param $userId
      * @param $limit
@@ -36,7 +38,7 @@ class GistRepository
     }
 
     /**
-     * Find or create a gist in the database
+     * Find or create a gist in the database.
      *
      * @param array $gistData
      * @param int $userId
@@ -46,7 +48,7 @@ class GistRepository
     {
         $gist = EloquentGist::firstOrCreate([
             'id'      => $gistData['id'],
-            'user_id' => $userId
+            'user_id' => $userId,
         ]);
 
         // @todo: fix this file stuff, it's bad
@@ -71,7 +73,7 @@ class GistRepository
     }
 
     /**
-     * Finds a gist by ID. Grabs data from Eloquent and GitHub API
+     * Finds a gist by ID. Grabs data from Eloquent and GitHub API.
      *
      * @param $id
      * @return Gist
@@ -89,7 +91,7 @@ class GistRepository
     }
 
     /**
-     * Activates a Gist for voting via Eloquent
+     * Activates a Gist for voting via Eloquent.
      *
      * @param $id
      * @param $userId
@@ -104,7 +106,7 @@ class GistRepository
     }
 
     /**
-     * Deactivates a Gist for voting via Eloquent
+     * Deactivates a Gist for voting via Eloquent.
      *
      * @param $id
      * @param $userId
@@ -117,7 +119,7 @@ class GistRepository
     }
 
     /**
-     * Updates the database from a recently fetched API call to GitHub
+     * Updates the database from a recently fetched API call to GitHub.
      *
      * @param $id
      * @param $gitHubGist
@@ -147,7 +149,7 @@ class GistRepository
     }
 
     /**
-     * Set all gists for a user to be (possibly) deleted in the future
+     * Set all gists for a user to be (possibly) deleted in the future.
      *
      * @param $userId
      */
@@ -157,7 +159,7 @@ class GistRepository
     }
 
     /**
-     * Delete gists by a user that are still set to be deleted
+     * Delete gists by a user that are still set to be deleted.
      *
      * @param $userId
      */
@@ -167,7 +169,7 @@ class GistRepository
     }
 
     /**
-     * Handles any exceptions when we can't get the gist contents (when GH is down)
+     * Handles any exceptions when we can't get the gist contents (when GH is down).
      *
      * @param EloquentGist $gist
      * @param $fileUrl
@@ -190,7 +192,7 @@ CONTENT;
     }
 
     /**
-     * Returns a collection of correctly formed gist objects
+     * Returns a collection of correctly formed gist objects.
      *
      * @param $gists
      * @return Collection

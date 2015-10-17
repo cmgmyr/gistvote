@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Events;
+<?php
+
+namespace Gistvote\Events;
 
 abstract class Event
 {

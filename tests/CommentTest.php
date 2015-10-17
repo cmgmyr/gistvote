@@ -22,11 +22,11 @@ class CommentTest extends TestCase
 
         $comment = new GistComment($githubComment, $gist);
 
-        $body = "This gist has vote tracking powered by [Gist.vote](http://gistvote.dev/cmgmyr/5300bf315d8f29864d9b)";
+        $body = 'This gist has vote tracking powered by [Gist.vote](http://gistvote.dev/cmgmyr/5300bf315d8f29864d9b)';
         $this->assertEquals($body, $comment->body);
-        $this->assertEquals("cmgmyr", $comment->username());
-        $this->assertEquals("https://avatars.githubusercontent.com/u/4693481?v=3", $comment->avatar());
-        $this->assertEquals("https://github.com/cmgmyr", $comment->profile());
+        $this->assertEquals('cmgmyr', $comment->username());
+        $this->assertEquals('https://avatars.githubusercontent.com/u/4693481?v=3', $comment->avatar());
+        $this->assertEquals('https://github.com/cmgmyr', $comment->profile());
         $this->assertEquals(new DateTime('2015-07-20T15:25:54Z'), $comment->updated_at);
         $this->assertFalse($comment->hasVote());
     }
@@ -41,7 +41,7 @@ class CommentTest extends TestCase
 
         $comment = new GistComment($githubComment, $gist);
 
-        $body = "+1 for good validation!";
+        $body = '+1 for good validation!';
         $this->assertEquals($body, $comment->body);
         $this->assertTrue($comment->hasVote());
         $this->assertTrue($comment->hasPositiveVote());
@@ -58,7 +58,7 @@ class CommentTest extends TestCase
 
         $comment = new GistComment($githubComment, $gist);
 
-        $body = "-1 for more testing purposes";
+        $body = '-1 for more testing purposes';
         $this->assertEquals($body, $comment->body);
         $this->assertTrue($comment->hasNegativeVote());
         $this->assertFalse($comment->hasPositiveVote());

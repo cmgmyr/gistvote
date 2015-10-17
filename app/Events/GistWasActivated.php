@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Events;
+<?php
+
+namespace Gistvote\Events;
 
 use Gistvote\Gists\EloquentGist;
 use Illuminate\Queue\SerializesModels;

@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Console;
+<?php
+
+namespace Gistvote\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;

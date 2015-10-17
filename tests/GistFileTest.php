@@ -36,7 +36,7 @@ Route::group(['prefix' =&gt; 'api'], function () {
 SNIPPET;
         $this->assertEquals($expectedSnippet, $file->snippet());
 
-        $expectedSnippet = '<pre><code class="language-php line-numbers">'.$expectedSnippet.'</code></pre>';
+        $expectedSnippet = '<pre><code class="language-php line-numbers">' . $expectedSnippet . '</code></pre>';
         $this->assertEquals($expectedSnippet, $file->renderSnippetHtml());
     }
 

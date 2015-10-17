@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Services\Notifications;
+<?php
+
+namespace Gistvote\Services\Notifications;
 
 use Illuminate\Session\Store;
 use Illuminate\Support\MessageBag;
@@ -16,7 +18,7 @@ class FlashNotifier
     }
 
     /**
-     * Sets a successful flash message
+     * Sets a successful flash message.
      *
      * @param $message
      */
@@ -26,7 +28,7 @@ class FlashNotifier
     }
 
     /**
-     * Sets an error flash message
+     * Sets an error flash message.
      *
      * @param $message
      */
@@ -36,7 +38,7 @@ class FlashNotifier
     }
 
     /**
-     * Sets a validation error flash message
+     * Sets a validation error flash message.
      *
      * @param MessageBag $errors
      * @param string $message
@@ -48,7 +50,7 @@ class FlashNotifier
     }
 
     /**
-     * Sets a flash message
+     * Sets a flash message.
      *
      * @param $message
      * @param string $level

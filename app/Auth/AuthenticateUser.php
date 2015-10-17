@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Auth;
+<?php
+
+namespace Gistvote\Auth;
 
 use Gistvote\Users\UserRepository;
 use Illuminate\Contracts\Auth\Guard as Auth;
@@ -34,7 +36,7 @@ class AuthenticateUser
     }
 
     /**
-     * If code is available, create or update the user, then log in
+     * If code is available, create or update the user, then log in.
      *
      * @param boolean $hasCode
      * @param AuthenticateUserListener $listener
@@ -54,7 +56,7 @@ class AuthenticateUser
     }
 
     /**
-     * Redirect to the authentication URL
+     * Redirect to the authentication URL.
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
@@ -64,7 +66,7 @@ class AuthenticateUser
     }
 
     /**
-     * Gets the user information from GitHub
+     * Gets the user information from GitHub.
      *
      * @return \Laravel\Socialite\Contracts\User
      */

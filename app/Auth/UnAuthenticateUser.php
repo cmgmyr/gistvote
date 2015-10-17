@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Auth;
+<?php
+
+namespace Gistvote\Auth;
 
 use Illuminate\Contracts\Auth\Guard as Auth;
 
@@ -18,7 +20,7 @@ class UnAuthenticateUser
     }
 
     /**
-     * Log the user out
+     * Log the user out.
      *
      * @param UnAuthenticateUserListener $listener
      * @return \Symfony\Component\HttpFoundation\RedirectResponse

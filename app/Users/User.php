@@ -1,10 +1,12 @@
-<?php namespace Gistvote\Users;
+<?php
+
+namespace Gistvote\Users;
 
 use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract, GitHubUser
 {
@@ -32,7 +34,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     protected $hidden = ['token', 'remember_token'];
 
     /**
-     * A User has many Gists
+     * A User has many Gists.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -42,7 +44,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     /**
-     * Returns the username for the user
+     * Returns the username for the user.
      *
      * @return string
      */
@@ -52,7 +54,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     /**
-     * Returns the profile url for the user
+     * Returns the profile url for the user.
      *
      * @return string
      */
@@ -62,7 +64,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     /**
-     * Returns the avatar url for the user
+     * Returns the avatar url for the user.
      *
      * @return string
      */

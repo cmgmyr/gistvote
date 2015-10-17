@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Services\Notifications;
+<?php
+
+namespace Gistvote\Services\Notifications;
 
 use Illuminate\Support\Facades\Facade;
 

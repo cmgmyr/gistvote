@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Listeners;
+<?php
+
+namespace Gistvote\Listeners;
 
 use Gistvote\Events\GistWasActivated;
 use Gistvote\Services\GitHub;

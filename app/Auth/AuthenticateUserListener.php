@@ -1,9 +1,11 @@
-<?php namespace Gistvote\Auth;
+<?php
+
+namespace Gistvote\Auth;
 
 interface AuthenticateUserListener
 {
     /**
-     * When a user has successfully been logged in
+     * When a user has successfully been logged in.
      *
      * @param $user
      * @return \Illuminate\Routing\Redirector

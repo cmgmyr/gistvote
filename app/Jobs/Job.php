@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Jobs;
+<?php
+
+namespace Gistvote\Jobs;
 
 use Illuminate\Bus\Queueable;
 

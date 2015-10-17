@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Http\Controllers;
+<?php
+
+namespace Gistvote\Http\Controllers;
 
 use Exception;
 use Gistvote\Gists\GistRepository;
@@ -46,7 +48,7 @@ class GistsController extends Controller
     }
 
     /**
-     * Shows all of the user's gists
+     * Shows all of the user's gists.
      *
      * @return \Illuminate\View\View
      */
@@ -62,7 +64,7 @@ class GistsController extends Controller
     }
 
     /**
-     * Refreshes the user's gists in the database
+     * Refreshes the user's gists in the database.
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -82,7 +84,7 @@ class GistsController extends Controller
     }
 
     /**
-     * Shows the view page for a Gist
+     * Shows the view page for a Gist.
      *
      * @param $username
      * @param $id
@@ -94,11 +96,13 @@ class GistsController extends Controller
             $gist = $this->repository->findById($id);
         } catch (Exception $e) {
             Flash::error($this->gistNotFoundMessage);
+
             return redirect('/');
         }
 
         if ($username != $gist->owner || $gist->isNotVoting()) {
             Flash::error($this->gistNotFoundMessage);
+
             return redirect('/');
         }
 
@@ -106,7 +110,7 @@ class GistsController extends Controller
     }
 
     /**
-     * Saves a new comment/vote to a gist
+     * Saves a new comment/vote to a gist.
      *
      * @param Request $request
      * @param $username
@@ -119,6 +123,7 @@ class GistsController extends Controller
 
         if ($username != $gist->owner || $gist->isNotVoting()) {
             Flash::error($this->gistNotFoundMessage);
+
             return redirect('/');
         }
 
@@ -128,6 +133,7 @@ class GistsController extends Controller
 
         if ($validator->fails()) {
             Flash::validation($validator->errors());
+
             return redirect()->back()->withInput();
         }
 
@@ -141,7 +147,7 @@ class GistsController extends Controller
     }
 
     /**
-     * Activates a Gist for voting
+     * Activates a Gist for voting.
      *
      * @param $id
      * @return array
@@ -154,7 +160,7 @@ class GistsController extends Controller
     }
 
     /**
-     * Deactivates a Gist for voting
+     * Deactivates a Gist for voting.
      *
      * @param $id
      * @return array

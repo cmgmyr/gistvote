@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Gists;
+<?php
+
+namespace Gistvote\Gists;
 
 use Carbon\Carbon;
 use Gistvote\Voters\Voter;
@@ -85,7 +87,7 @@ class Gist
     }
 
     /**
-     * Creates a new Gist object from Eloquent
+     * Creates a new Gist object from Eloquent.
      *
      * @param EloquentGist $eloquentGist
      * @return Gist
@@ -103,7 +105,7 @@ class Gist
         $gist->commentCount = $eloquentGist->comments;
 
         $gist->files = collect([
-            new GistFile($gist, $eloquentGist->file, $eloquentGist->file_language, $eloquentGist->file_content)
+            new GistFile($gist, $eloquentGist->file, $eloquentGist->file_language, $eloquentGist->file_content),
         ]);
         $gist->fileCount = $eloquentGist->files;
 
@@ -118,7 +120,7 @@ class Gist
     }
 
     /**
-     * Creates a new Gist from the GitHub API
+     * Creates a new Gist from the GitHub API.
      *
      * @param EloquentGist $eloquentGist
      * @param $gitHubGist
@@ -161,7 +163,7 @@ class Gist
     }
 
     /**
-     * Returns the first file of the Gist
+     * Returns the first file of the Gist.
      *
      * @return GistFile
      */
@@ -171,7 +173,7 @@ class Gist
     }
 
     /**
-     * Sees if the Gist is public
+     * Sees if the Gist is public.
      *
      * @return bool
      */
@@ -181,7 +183,7 @@ class Gist
     }
 
     /**
-     * Sees if the Gist is not public
+     * Sees if the Gist is not public.
      *
      * @return bool
      */
@@ -191,7 +193,7 @@ class Gist
     }
 
     /**
-     * Sees if the Gist is open for voting
+     * Sees if the Gist is open for voting.
      *
      * @return bool
      */
@@ -201,7 +203,7 @@ class Gist
     }
 
     /**
-     * Sees if the Gist is not open for voting
+     * Sees if the Gist is not open for voting.
      *
      * @return bool
      */
@@ -211,7 +213,7 @@ class Gist
     }
 
     /**
-     * Generates the "show" url for the Gist
+     * Generates the "show" url for the Gist.
      *
      * @return string
      */
@@ -221,7 +223,7 @@ class Gist
     }
 
     /**
-     * Returns the url for the original gist on GitHub
+     * Returns the url for the original gist on GitHub.
      *
      * @return string
      */
@@ -231,7 +233,7 @@ class Gist
     }
 
     /**
-     * Adds a new negative voter
+     * Adds a new negative voter.
      *
      * @param Voter $voter
      */
@@ -243,7 +245,7 @@ class Gist
     }
 
     /**
-     * Adds a new positive voter
+     * Adds a new positive voter.
      *
      * @param Voter $voter
      */
@@ -256,7 +258,7 @@ class Gist
 
     /**
      * Removes a vote from the opposing collection so that each user
-     * only gets one vote per gist
+     * only gets one vote per gist.
      *
      * @param $collection
      * @param $voter
@@ -267,7 +269,7 @@ class Gist
     }
 
     /**
-     * Returns the positive votes collection
+     * Returns the positive votes collection.
      *
      * @return mixed
      */
@@ -277,7 +279,7 @@ class Gist
     }
 
     /**
-     * Returns the negative votes collection
+     * Returns the negative votes collection.
      *
      * @return mixed
      */
@@ -287,7 +289,7 @@ class Gist
     }
 
     /**
-     * Returns the total vote count for the gist
+     * Returns the total vote count for the gist.
      *
      * @return mixed
      */
@@ -297,7 +299,7 @@ class Gist
     }
 
     /**
-     * Figures out which user to use when authenticating to GitHub
+     * Figures out which user to use when authenticating to GitHub.
      *
      * @param EloquentGist $eloquentGist
      */

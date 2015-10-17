@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Http\Requests;
+<?php
+
+namespace Gistvote\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

@@ -1,7 +1,9 @@
-<?php namespace Gistvote\Exceptions;
+<?php
 
-use Exception;
+namespace Gistvote\Exceptions;
+
 use Bugsnag\BugsnagLaravel\BugsnagExceptionHandler as ExceptionHandler;
+use Exception;
 
 class Handler extends ExceptionHandler
 {

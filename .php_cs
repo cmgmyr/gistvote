@@ -52,4 +52,5 @@ return Symfony\CS\Config\Config::create()
         // Ordering use statements.
         'ordered_use',
     ])
+    ->setUsingCache(true)
     ->finder($finder);

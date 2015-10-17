@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Users;
+<?php
+
+namespace Gistvote\Users;
 
 class UserRepository
 {
@@ -9,7 +11,7 @@ class UserRepository
     public function findByUsernameOrCreate($userData)
     {
         $user = User::firstOrCreate([
-            'username' => $userData->nickname
+            'username' => $userData->nickname,
         ]);
 
         // @todo: I don't think this will work. Let's handle it another way later...

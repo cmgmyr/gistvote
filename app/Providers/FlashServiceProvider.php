@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Providers;
+<?php
+
+namespace Gistvote\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

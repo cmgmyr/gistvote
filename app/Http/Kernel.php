@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Http;
+<?php
+
+namespace Gistvote\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 

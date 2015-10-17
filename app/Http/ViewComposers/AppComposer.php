@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Http\ViewComposers;
+<?php
+
+namespace Gistvote\Http\ViewComposers;
 
 use Illuminate\Contracts\Auth\Guard as Auth;
 use Illuminate\Contracts\View\View;

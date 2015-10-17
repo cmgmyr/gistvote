@@ -1,7 +1,9 @@
-<?php namespace Gistvote\Providers;
+<?php
 
-use Illuminate\Routing\Router;
+namespace Gistvote\Providers;
+
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
 
 class RouteServiceProvider extends ServiceProvider
 {

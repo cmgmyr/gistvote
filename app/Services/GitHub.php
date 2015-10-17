@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Services;
+<?php
+
+namespace Gistvote\Services;
 
 use Gistvote\Users\User;
 use Github\Client as GitHubClient;
@@ -28,14 +30,14 @@ class GitHub
     }
 
     /**
-     * Authenticates the current user for the upcoming API calls
+     * Authenticates the current user for the upcoming API calls.
      */
     private function authenticate()
     {
         try {
             $this->client->authenticate($this->user->token, GitHubClient::AUTH_HTTP_TOKEN);
         } catch (\Exception $e) {
-            \Bugsnag::notifyError("Exception", 'GitHub Authentication failed: ' . $e->getMessage());
+            \Bugsnag::notifyError('Exception', 'GitHub Authentication failed: ' . $e->getMessage());
         }
     }
 
@@ -50,7 +52,7 @@ class GitHub
     }
 
     /**
-     * Returns a specific gist
+     * Returns a specific gist.
      *
      * @param $id
      * @return mixed
@@ -64,7 +66,7 @@ class GitHub
     }
 
     /**
-     * Adds a new comment to an existing gist
+     * Adds a new comment to an existing gist.
      *
      * @param $id
      * @param $comment
@@ -75,7 +77,7 @@ class GitHub
     }
 
     /**
-     * Parses markdown via GitHub
+     * Parses markdown via GitHub.
      *
      * @param $markdown
      * @return \Guzzle\Http\EntityBodyInterface|mixed|string
@@ -83,7 +85,7 @@ class GitHub
     public function parseMarkdown($markdown)
     {
         $body = json_encode([
-            'text' => $markdown
+            'text' => $markdown,
         ]);
 
         $response = $this->client->getHttpClient()->post('markdown', $body);

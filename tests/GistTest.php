@@ -119,7 +119,7 @@ class GistTest extends TestCase
     }
 
     /**
-     * Builds an eloquent gist for testing
+     * Builds an eloquent gist for testing.
      *
      * @param array $userOverrides
      * @param array $gistOverrides
@@ -136,7 +136,7 @@ class GistTest extends TestCase
     }
 
     /**
-     * Builds a Github gist for testing
+     * Builds a Github gist for testing.
      *
      * @param array $userOverrides
      * @param array $gistOverrides

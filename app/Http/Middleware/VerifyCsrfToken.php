@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Http\Middleware;
+<?php
+
+namespace Gistvote\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 
@@ -10,6 +12,6 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        'api/*'
+        'api/*',
     ];
 }

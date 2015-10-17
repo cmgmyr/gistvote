@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Http\Middleware;
+<?php
+
+namespace Gistvote\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;

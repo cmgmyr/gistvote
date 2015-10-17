@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Http\Controllers;
+<?php
+
+namespace Gistvote\Http\Controllers;
 
 use Gistvote\Auth\AuthenticateUser;
 use Gistvote\Auth\AuthenticateUserListener;
@@ -17,7 +19,7 @@ class AuthController extends Controller implements AuthenticateUserListener, UnA
     }
 
     /**
-     * See if there is an auth code, if so then log the user in
+     * See if there is an auth code, if so then log the user in.
      *
      * @param AuthenticateUser $authenticateUser
      * @param Request $request
@@ -26,11 +28,12 @@ class AuthController extends Controller implements AuthenticateUserListener, UnA
     public function login(AuthenticateUser $authenticateUser, Request $request)
     {
         $hasCode = $request->has('code');
+
         return $authenticateUser->execute($hasCode, $this);
     }
 
     /**
-     * When a user has successfully been logged in
+     * When a user has successfully been logged in.
      *
      * @param $user
      * @return \Illuminate\Routing\Redirector
@@ -41,7 +44,7 @@ class AuthController extends Controller implements AuthenticateUserListener, UnA
     }
 
     /**
-     * Log the user out
+     * Log the user out.
      *
      * @param UnAuthenticateUser $unAuthenticateUser
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
@@ -52,7 +55,7 @@ class AuthController extends Controller implements AuthenticateUserListener, UnA
     }
 
     /**
-     * When a user has been successfully logged out
+     * When a user has been successfully logged out.
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */

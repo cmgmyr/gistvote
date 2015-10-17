@@ -1,4 +1,6 @@
-<?php namespace Gistvote\Gists;
+<?php
+
+namespace Gistvote\Gists;
 
 use Carbon\Carbon;
 use Gistvote\Services\GitHub;
@@ -64,7 +66,7 @@ class GistComment implements GitHubUser
     }
 
     /**
-     * Returns the user's username
+     * Returns the user's username.
      *
      * @return string
      */
@@ -74,7 +76,7 @@ class GistComment implements GitHubUser
     }
 
     /**
-     * Returns the user's avatar
+     * Returns the user's avatar.
      *
      * @return string
      */
@@ -84,7 +86,7 @@ class GistComment implements GitHubUser
     }
 
     /**
-     * Returns the user's profile URL
+     * Returns the user's profile URL.
      *
      * @return string
      */
@@ -94,7 +96,7 @@ class GistComment implements GitHubUser
     }
 
     /**
-     * Transforms the raw/markdown content to html
+     * Transforms the raw/markdown content to html.
      *
      * @return string
      */
@@ -106,7 +108,7 @@ class GistComment implements GitHubUser
     /**
      * This will update the comment vote if there is a -1 or +1 found.
      * We'll take the positive vote in case there is an off chance
-     * where both are found
+     * where both are found.
      */
     private function parseForVotes()
     {
@@ -126,7 +128,7 @@ class GistComment implements GitHubUser
     }
 
     /**
-     * Checks to see if the comment has a vote
+     * Checks to see if the comment has a vote.
      *
      * @return bool
      */
@@ -140,7 +142,7 @@ class GistComment implements GitHubUser
     }
 
     /**
-     * Checks to see if the comment has a positive (+1) vote
+     * Checks to see if the comment has a positive (+1) vote.
      *
      * @return bool
      */
@@ -154,7 +156,7 @@ class GistComment implements GitHubUser
     }
 
     /**
-     * Checks to see if the comment has a negative (-1) vote
+     * Checks to see if the comment has a negative (-1) vote.
      *
      * @return bool
      */
