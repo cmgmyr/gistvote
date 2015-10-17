@@ -21,7 +21,8 @@
         "phpunit/phpunit": "~4.0",
         "phpspec/phpspec": "~2.1",
         "fzaninotto/faker": "^1.5",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "fabpot/php-cs-fixer": "^1.10"
     },
     "autoload": {
         "classmap": [
